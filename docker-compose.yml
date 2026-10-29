@@ -1,4 +1,4 @@
-# Student API — Nooruzbek Toktobaev
+# Student API by Nooruzbek Toktobaev
 # Usage: cp .env.example .env  (set your own password)  &&  docker compose up -d --build
 name: toktobaev-nooruzbek-student-api
 
@@ -30,7 +30,7 @@ services:
     image: toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek
     container_name: toktobaev-nooruzbek-app
     environment:
-      # "db" is the Compose service name — resolved by Docker DNS inside the network
+      # "db" is the Compose service name, Docker DNS resolves it inside the network
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${POSTGRES_DB}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}

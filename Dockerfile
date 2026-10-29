@@ -1,4 +1,4 @@
-# Student API — Nooruzbek Toktobaev
+# Student API by Nooruzbek Toktobaev
 # Multi-stage build: stage 1 builds the JAR with Gradle (JDK), stage 2 runs it on a small JRE image.
 
 # ---------- Stage 1: build ----------

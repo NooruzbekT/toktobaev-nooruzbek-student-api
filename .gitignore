@@ -9,7 +9,7 @@ out/
 *.iml
 .vscode/
 
-# Secrets — never commit real credentials
+# Secrets: never commit real credentials
 .env
 *.env.local
 secrets/

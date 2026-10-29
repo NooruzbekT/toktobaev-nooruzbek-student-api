@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Student CRUD API — DevOps midterm project of Nooruzbek Toktobaev.
+ * Student CRUD API, DevOps midterm project of Nooruzbek Toktobaev.
  */
 @SpringBootApplication
 public class StudentApiApplication {

@@ -1,4 +1,4 @@
-// Jenkins declarative pipeline — Student API by Nooruzbek Toktobaev
+// Jenkins declarative pipeline for the Student API by Nooruzbek Toktobaev
 // Stages: Checkout -> Build -> Test -> Docker Build -> Verify.
 // A failing stage (compile error, failing test) stops the pipeline: later stages are skipped.
 pipeline {
@@ -84,7 +84,7 @@ pipeline {
             echo "SUCCESS: pipeline of ${STUDENT_NAME} finished, image ${IMAGE_NAME}:${IMAGE_TAG} is ready"
         }
         failure {
-            echo "FAILURE: pipeline of ${STUDENT_NAME} failed — see the stage log above"
+            echo "FAILURE: pipeline of ${STUDENT_NAME} failed, see the stage log above"
         }
     }
 }

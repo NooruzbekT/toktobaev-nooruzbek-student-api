@@ -1,8 +1,8 @@
-# Student API — Nooruzbek Toktobaev
+# Student API by Nooruzbek Toktobaev
 
 **Author:** Nooruzbek Toktobaev
 
-**Description:** Spring Boot CRUD REST API for managing students (create, read, update, delete, search by last name) with PostgreSQL, Docker and a Jenkins pipeline — DevOps midterm of Nooruzbek Toktobaev.
+**Description:** Spring Boot CRUD REST API for managing students (create, read, update, delete, search by last name) with PostgreSQL, Docker and a Jenkins pipeline - DevOps midterm of Nooruzbek Toktobaev.
 
 ## Stack
 
@@ -15,7 +15,7 @@
 
 ```
 toktobaev-nooruzbek-student-api/
-├── scripts/      # Toktobaev_Nooruzbek_system_report.sh — system monitoring script
+├── scripts/      # Toktobaev_Nooruzbek_system_report.sh - system monitoring script
 ├── logs/         # personal system report log + log analysis
 ├── backups/      # README backup
 ├── src/          # Spring Boot application source code and tests
@@ -38,7 +38,7 @@ toktobaev-nooruzbek-student-api/
 | PUT    | `/api/students/{id}` | Update student           |
 | DELETE | `/api/students/{id}` | Delete student           |
 
-Unknown id → `404 Not Found` with a JSON error body. Invalid data → `400 Bad Request`.
+Unknown id -> `404 Not Found` with a JSON error body. Invalid data -> `400 Bad Request`.
 
 ## Build and test
 
@@ -48,7 +48,7 @@ Unknown id → `404 Not Found` with a JSON error body. Invalid data → `400 Bad
 
 ## Changes by Nooruzbek Toktobaev
 
-### feature/toktobaev-nooruzbek-crud — search students by last name
+### feature/toktobaev-nooruzbek-crud - search students by last name
 
 - `GET /api/students?lastName=<text>` returns students whose last name contains `<text>`
   (case-insensitive, partial match), sorted by last name and first name.
@@ -65,13 +65,13 @@ curl http://localhost:8080/api/info
 docker compose down             # data stays in the volume toktobaev-nooruzbek-pgdata
 ```
 
-Image: `toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek` (multi-stage: Gradle on JDK 21 → JRE 21 alpine).
+Image: `toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek` (multi-stage: Gradle on JDK 21 -> JRE 21 alpine).
 Postman collection: `postman/Toktobaev_Nooruzbek_Student_API.postman_collection.json`.
 
 ## CI with Jenkins
 
 Jenkins job `Toktobaev_Nooruzbek_Student_API` runs the `Jenkinsfile`:
-**Checkout → Build → Test → Docker Build → Verify**. The pipeline stops on the first failing stage.
+**Checkout -> Build -> Test -> Docker Build -> Verify**. The pipeline stops on the first failing stage.
 Jenkins polls GitHub every 2 minutes (`pollSCM('H/2 * * * *')`), so every push to `main` starts a build automatically.
 
 Full midterm report with evidence: [REPORT.md](REPORT.md).

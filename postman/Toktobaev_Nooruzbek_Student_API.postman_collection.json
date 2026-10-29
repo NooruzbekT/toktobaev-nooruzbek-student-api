@@ -1,6 +1,6 @@
 {
   "info": {
-    "name": "Toktobaev Nooruzbek — Student API",
+    "name": "Toktobaev Nooruzbek Student API",
     "description": "CRUD tests for the Student API by Nooruzbek Toktobaev. Run the requests in order.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "name": "Create student — Nooruzbek Toktobaev",
+      "name": "Create student Nooruzbek Toktobaev",
       "request": {
         "method": "POST",
         "header": [
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "name": "Create student — Aibek Toktogulov",
+      "name": "Create student Aibek Toktogulov",
       "request": {
         "method": "POST",
         "header": [

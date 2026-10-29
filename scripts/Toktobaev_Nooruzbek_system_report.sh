@@ -2,7 +2,7 @@
 # =====================================================================
 #  Toktobaev_Nooruzbek_system_report.sh
 #  Author : Nooruzbek Toktobaev
-#  Purpose: system monitoring report — student name, date/time, user,
+#  Purpose: system monitoring report: student name, date/time, user,
 #           OS + kernel, CPU, memory, disk usage and available space.
 #           Output is printed to the terminal AND appended to the
 #           personal log file (tee -a), so every run adds a new entry.
@@ -26,7 +26,7 @@ section() {
 
 report() {
     echo "======================================================="
-    echo " SYSTEM REPORT — $STUDENT_NAME"
+    echo " SYSTEM REPORT: $STUDENT_NAME"
     echo "======================================================="
     echo "Student name : $STUDENT_NAME"
     echo "Date / time  : $(date '+%Y-%m-%d %H:%M:%S %Z')"

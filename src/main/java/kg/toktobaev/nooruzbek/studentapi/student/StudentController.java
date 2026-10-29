@@ -27,7 +27,7 @@ public class StudentController {
     }
 
     /**
-     * GET /api/students — all students; GET /api/students?lastName=tok — search by last name.
+     * GET /api/students returns all students, GET /api/students?lastName=tok searches by last name.
      */
     @GetMapping
     public List<Student> getAll(@RequestParam(required = false) String lastName) {
