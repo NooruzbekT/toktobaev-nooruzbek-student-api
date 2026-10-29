@@ -73,3 +73,5 @@ Postman collection: `postman/Toktobaev_Nooruzbek_Student_API.postman_collection.
 Jenkins job `Toktobaev_Nooruzbek_Student_API` runs the `Jenkinsfile`:
 **Checkout → Build → Test → Docker Build → Verify**. The pipeline stops on the first failing stage.
 Jenkins polls GitHub every 2 minutes (`pollSCM('H/2 * * * *')`), so every push to `main` starts a build automatically.
+
+Full midterm report with evidence: [REPORT.md](REPORT.md).
