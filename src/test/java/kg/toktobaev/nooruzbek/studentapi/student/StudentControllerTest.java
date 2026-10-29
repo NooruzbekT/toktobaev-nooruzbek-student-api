@@ -46,7 +46,7 @@ class StudentControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(header().string("Location", "/api/students/1"))
                 .andExpect(jsonPath("$.firstName").value("Nooruzbek"))
-                .andExpect(jsonPath("$.lastName").value("Toktobayev"));
+                .andExpect(jsonPath("$.lastName").value("Toktobaev"));
     }
 
     @Test
