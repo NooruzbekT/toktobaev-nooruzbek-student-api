@@ -54,3 +54,22 @@ Unknown id → `404 Not Found` with a JSON error body. Invalid data → `400 Bad
   (case-insensitive, partial match), sorted by last name and first name.
 - An empty or blank `lastName` returns the full list, so the old behaviour is unchanged.
 - Covered by the integration test `StudentSearchTest` (runs on H2, no PostgreSQL needed).
+
+## Run with Docker Compose
+
+```bash
+cp .env.example .env            # set your own POSTGRES_PASSWORD
+docker compose up -d --build    # app on http://localhost:8080, PostgreSQL in the private network
+docker compose ps
+curl http://localhost:8080/api/info
+docker compose down             # data stays in the volume toktobaev-nooruzbek-pgdata
+```
+
+Image: `toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek` (multi-stage: Gradle on JDK 21 → JRE 21 alpine).
+Postman collection: `postman/Toktobaev_Nooruzbek_Student_API.postman_collection.json`.
+
+## CI with Jenkins
+
+Jenkins job `Toktobaev_Nooruzbek_Student_API` runs the `Jenkinsfile`:
+**Checkout → Build → Test → Docker Build → Verify**. The pipeline stops on the first failing stage.
+Jenkins polls GitHub every 2 minutes (`pollSCM('H/2 * * * *')`), so every push to `main` starts a build automatically.
