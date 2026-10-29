@@ -32,6 +32,7 @@ toktobaev-nooruzbek-student-api/
 |--------|----------------------|--------------------------|
 | GET    | `/api/info`          | App name, author, version|
 | GET    | `/api/students`      | List all students        |
+| GET    | `/api/students?lastName=tok` | Search by last name (case-insensitive) |
 | GET    | `/api/students/{id}` | Get student by id        |
 | POST   | `/api/students`      | Create student           |
 | PUT    | `/api/students/{id}` | Update student           |
@@ -44,3 +45,12 @@ Unknown id → `404 Not Found` with a JSON error body. Invalid data → `400 Bad
 ```bash
 ./gradlew clean build     # compile + run tests (H2, no PostgreSQL needed)
 ```
+
+## Changes by Nooruzbek Toktobaev
+
+### feature/toktobaev-nooruzbek-crud — search students by last name
+
+- `GET /api/students?lastName=<text>` returns students whose last name contains `<text>`
+  (case-insensitive, partial match), sorted by last name and first name.
+- An empty or blank `lastName` returns the full list, so the old behaviour is unchanged.
+- Covered by the integration test `StudentSearchTest` (runs on H2, no PostgreSQL needed).
