@@ -1,0 +1,18 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ ls -l scripts/
+total 4
+-rw-r--r-- 1 nooke nooke 2976 Oct 29 18:57 Toktobaev_Nooruzbek_system_report.sh
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ ./scripts/Toktobaev_Nooruzbek_system_report.sh
+bash: line 1: ./scripts/Toktobaev_Nooruzbek_system_report.sh: Permission denied
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ chmod +x scripts/Toktobaev_Nooruzbek_system_report.sh && ls -l scripts/
+total 4
+-rwxr-xr-x 1 nooke nooke 2976 Oct 29 18:57 Toktobaev_Nooruzbek_system_report.sh
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ chmod 744 scripts/Toktobaev_Nooruzbek_system_report.sh && ls -l scripts/
+total 4
+-rwxr--r-- 1 nooke nooke 2976 Oct 29 18:57 Toktobaev_Nooruzbek_system_report.sh
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ stat -c "%A (%a)  owner=%U group=%G  %n" scripts/Toktobaev_Nooruzbek_system_report.sh
+-rwxr--r-- (744)  owner=nooke group=nooke  scripts/Toktobaev_Nooruzbek_system_report.sh
+

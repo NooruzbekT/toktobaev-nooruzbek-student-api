@@ -1,0 +1,58 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ tree -a --dirsfirst -I "evidence|.gradle|build"
+.
+├── backups
+├── gradle
+│   └── wrapper
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
+├── logs
+│   └── Toktobaev_Nooruzbek_system_report.log
+├── scripts
+│   └── Toktobaev_Nooruzbek_system_report.sh
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── kg
+│   │   │       └── toktobaev
+│   │   │           └── nooruzbek
+│   │   │               └── studentapi
+│   │   │                   ├── error
+│   │   │                   │   ├── ApiError.java
+│   │   │                   │   └── GlobalExceptionHandler.java
+│   │   │                   ├── info
+│   │   │                   │   └── InfoController.java
+│   │   │                   ├── student
+│   │   │                   │   ├── Student.java
+│   │   │                   │   ├── StudentController.java
+│   │   │                   │   ├── StudentNotFoundException.java
+│   │   │                   │   ├── StudentRepository.java
+│   │   │                   │   ├── StudentRequest.java
+│   │   │                   │   └── StudentService.java
+│   │   │                   └── StudentApiApplication.java
+│   │   └── resources
+│   │       └── application.yml
+│   └── test
+│       ├── java
+│       │   └── kg
+│       │       └── toktobaev
+│       │           └── nooruzbek
+│       │               └── studentapi
+│       │                   ├── student
+│       │                   │   └── StudentControllerTest.java
+│       │                   └── StudentApiIntegrationTest.java
+│       └── resources
+│           └── application-test.yml
+├── .env.example
+├── .gitattributes
+├── .gitignore
+├── Dockerfile
+├── Jenkinsfile
+├── README.md
+├── build.gradle
+├── docker-compose.yml
+├── gradlew
+├── gradlew.bat
+└── settings.gradle
+
+25 directories, 29 files
+

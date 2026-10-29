@@ -1,0 +1,6 @@
+nooruzbek@NooruzbekT:~$ mkdir -p toktobaev-nooruzbek-student-api/{scripts,logs,backups,src}
+
+nooruzbek@NooruzbekT:~$ cd toktobaev-nooruzbek-student-api && touch Dockerfile docker-compose.yml Jenkinsfile build.gradle README.md
+
+nooruzbek@NooruzbekT:~$ cd toktobaev-nooruzbek-student-api && touch scripts/Toktobaev_Nooruzbek_system_report.sh logs/Toktobaev_Nooruzbek_system_report.log
+

@@ -1,0 +1,28 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ tree -a --dirsfirst -L 2 -I "evidence|.gradle|build"
+.
+├── backups
+│   └── README_Toktobaev_Nooruzbek_backup.md
+├── gradle
+│   └── wrapper
+├── logs
+│   ├── Toktobaev_Nooruzbek_log_analysis.txt
+│   └── Toktobaev_Nooruzbek_system_report.log
+├── scripts
+│   └── Toktobaev_Nooruzbek_system_report.sh
+├── src
+│   ├── main
+│   └── test
+├── .env.example
+├── .gitattributes
+├── .gitignore
+├── Dockerfile
+├── Jenkinsfile
+├── README.md
+├── build.gradle
+├── docker-compose.yml
+├── gradlew
+├── gradlew.bat
+└── settings.gradle
+
+9 directories, 15 files
+

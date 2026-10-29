@@ -1,0 +1,24 @@
+# Gradle / Java build output
+build/
+.gradle/
+out/
+*.class
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Secrets — never commit real credentials
+.env
+*.env.local
+secrets/
+jenkins_home/
+
+# Logs (the personal system report log is project evidence and is kept)
+*.log
+!logs/Toktobaev_Nooruzbek_system_report.log
+
+# OS / misc
+.DS_Store
+node_modules/

@@ -1,0 +1,60 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ ./scripts/Toktobaev_Nooruzbek_system_report.sh
+=======================================================
+ SYSTEM REPORT — Nooruzbek Toktobaev
+=======================================================
+Student name : Nooruzbek Toktobaev
+Date / time  : 2026-10-29 18:57:29 +05
+Username     : nooke
+Hostname     : NooruzbekT
+
+---- Operating system and kernel ----
+OS           : Ubuntu 24.04.2 LTS
+Kernel       : Linux 6.6.87.1-microsoft-standard-WSL2
+uname -a     : Linux NooruzbekT 6.6.87.1-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Mon Apr 21 17:08:54 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+
+---- CPU ----
+Architecture:                         x86_64
+CPU(s):                               8
+Model name:                           Intel(R) Core(TM) i5-9300H CPU @ 2.40GHz
+Thread(s) per core:                   2
+Core(s) per socket:                   4
+nproc        : 8
+Load average : 1.32, 1.49, 1.22
+
+---- Memory ----
+               total        used        free      shared  buff/cache   available
+Mem:           7.7Gi       1.1Gi       4.0Gi        74Mi       2.8Gi       6.6Gi
+Swap:          2.0Gi          0B       2.0Gi
+
+---- Disk usage (df -h) ----
+Filesystem                                Size  Used Avail Use% Mounted on
+/dev/sdd                                 1007G   59M  956G   1% /mnt/wsl/docker-desktop/docker-desktop-user-distro
+drivers                                   232G  231G  652M 100% /usr/lib/wsl/drivers
+/dev/sdf                                 1007G  3.7G  952G   1% /
+rootfs                                    3.9G  2.7M  3.9G   1% /init
+C:\                                       232G  231G  652M 100% /mnt/c
+D:\                                       245G  188G   57G  77% /mnt/d
+/dev/loop0                                599M  599M     0 100% /mnt/wsl/docker-desktop/cli-tools
+C:\Program Files\Docker\Docker\resources  232G  231G  652M 100% /Docker/host
+
+---- Available disk space ----
+Root (/)        : 952G available of 1007G (1% used)
+Project dir     : 952G available
+Project size    : 304K (/home/nooke/toktobaev-nooruzbek-student-api)
+
+Report by Nooruzbek Toktobaev appended to /home/nooke/toktobaev-nooruzbek-student-api/logs/Toktobaev_Nooruzbek_system_report.log
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ cd /tmp && ~/toktobaev-nooruzbek-student-api/scripts/Toktobaev_Nooruzbek_system_report.sh | head -8
+=======================================================
+ SYSTEM REPORT — Nooruzbek Toktobaev
+=======================================================
+Student name : Nooruzbek Toktobaev
+Date / time  : 2026-10-29 18:57:29 +05
+Username     : nooke
+Hostname     : NooruzbekT
+
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ grep -c "SYSTEM REPORT" logs/Toktobaev_Nooruzbek_system_report.log; wc -l logs/Toktobaev_Nooruzbek_system_report.log
+3
+95 logs/Toktobaev_Nooruzbek_system_report.log
+

@@ -1,0 +1,78 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ cat -n scripts/Toktobaev_Nooruzbek_system_report.sh
+     1	#!/bin/bash
+     2	# =====================================================================
+     3	#  Toktobaev_Nooruzbek_system_report.sh
+     4	#  Author : Nooruzbek Toktobaev
+     5	#  Purpose: system monitoring report — student name, date/time, user,
+     6	#           OS + kernel, CPU, memory, disk usage and available space.
+     7	#           Output is printed to the terminal AND appended to the
+     8	#           personal log file (tee -a), so every run adds a new entry.
+     9	#  Usage  : ./scripts/Toktobaev_Nooruzbek_system_report.sh
+    10	#  Works on Linux; has fallbacks for macOS (sw_vers, sysctl, vm_stat).
+    11	# =====================================================================
+    12	
+    13	STUDENT_NAME="Nooruzbek Toktobaev"
+    14	
+    15	# Project root = parent of the scripts/ folder, so the script works from any directory
+    16	PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+    17	LOG_FILE="$PROJECT_DIR/logs/Toktobaev_Nooruzbek_system_report.log"
+    18	
+    19	mkdir -p "$(dirname "$LOG_FILE")"
+    20	
+    21	# Prints a section header
+    22	section() {
+    23	    echo
+    24	    echo "---- $1 ----"
+    25	}
+    26	
+    27	report() {
+    28	    echo "======================================================="
+    29	    echo " SYSTEM REPORT — $STUDENT_NAME"
+    30	    echo "======================================================="
+    31	    echo "Student name : $STUDENT_NAME"
+    32	    echo "Date / time  : $(date '+%Y-%m-%d %H:%M:%S %Z')"
+    33	    echo "Username     : $(whoami)"
+    34	    echo "Hostname     : $(hostname)"
+    35	
+    36	    section "Operating system and kernel"
+    37	    if [ -r /etc/os-release ]; then
+    38	        # shellcheck disable=SC1091
+    39	        . /etc/os-release
+    40	        echo "OS           : $PRETTY_NAME"
+    41	    elif command -v sw_vers >/dev/null 2>&1; then
+    42	        echo "OS           : $(sw_vers -productName) $(sw_vers -productVersion)"
+    43	    fi
+    44	    echo "Kernel       : $(uname -sr)"
+    45	    echo "uname -a     : $(uname -a)"
+    46	
+    47	    section "CPU"
+    48	    if command -v lscpu >/dev/null 2>&1; then
+    49	        lscpu | grep -E '^(Architecture|Model name|CPU\(s\)|Thread\(s\) per core|Core\(s\) per socket)'
+    50	    else
+    51	        echo "Model name   : $(sysctl -n machdep.cpu.brand_string 2>/dev/null)"
+    52	        echo "CPU(s)       : $(sysctl -n hw.ncpu 2>/dev/null)"
+    53	    fi
+    54	    echo "nproc        : $(nproc 2>/dev/null || sysctl -n hw.ncpu)"
+    55	    echo "Load average : $(uptime | awk -F'load average[s]*: ' '{print $2}')"
+    56	
+    57	    section "Memory"
+    58	    if command -v free >/dev/null 2>&1; then
+    59	        free -h
+    60	    else
+    61	        vm_stat | head -6
+    62	    fi
+    63	
+    64	    section "Disk usage (df -h)"
+    65	    # Hide virtual filesystems on Linux; macOS df has no -x, so fall back to plain df -h
+    66	    df -h -x tmpfs -x devtmpfs -x overlay -x squashfs 2>/dev/null || df -h
+    67	
+    68	    section "Available disk space"
+    69	    echo "Root (/)        : $(df -h / | awk 'NR==2 {print $4 " available of " $2 " (" $5 " used)"}')"
+    70	    echo "Project dir     : $(df -h "$PROJECT_DIR" | awk 'NR==2 {print $4 " available"}')"
+    71	    echo "Project size    : $(du -sh "$PROJECT_DIR" 2>/dev/null | cut -f1) ($PROJECT_DIR)"
+    72	    echo
+    73	}
+    74	
+    75	report 2>&1 | tee -a "$LOG_FILE"
+    76	echo "Report by $STUDENT_NAME appended to $LOG_FILE"
+

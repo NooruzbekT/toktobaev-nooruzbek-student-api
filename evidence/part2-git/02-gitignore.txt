@@ -1,0 +1,37 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ cat .gitignore
+# Gradle / Java build output
+build/
+.gradle/
+out/
+*.class
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Secrets — never commit real credentials
+.env
+*.env.local
+secrets/
+jenkins_home/
+
+# Logs (the personal system report log is project evidence and is kept)
+*.log
+!logs/Toktobaev_Nooruzbek_system_report.log
+
+# OS / misc
+.DS_Store
+node_modules/
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ cat .env.example
+# Copy to .env and set your own values. .env is in .gitignore and must never be committed.
+POSTGRES_DB=students_db
+POSTGRES_USER=student_user
+POSTGRES_PASSWORD=change_me
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git check-ignore -v .env build/ .gradle/ || true
+.gitignore:13:.env	.env
+.gitignore:2:build/	build/
+.gitignore:3:.gradle/	.gradle/
+

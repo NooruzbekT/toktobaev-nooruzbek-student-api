@@ -1,0 +1,11 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ echo "line 1 (written with >)" > /tmp/toktobaev_redirect_demo.txt; cat /tmp/toktobaev_redirect_demo.txt
+line 1 (written with >)
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ echo "line 2 (written with > again)" > /tmp/toktobaev_redirect_demo.txt; cat /tmp/toktobaev_redirect_demo.txt   # > overwrote the file
+line 2 (written with > again)
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ echo "line 3 (written with >>)" >> /tmp/toktobaev_redirect_demo.txt; echo "line 4 (written with >>)" >> /tmp/toktobaev_redirect_demo.txt; cat -n /tmp/toktobaev_redirect_demo.txt   # >> appended
+     1	line 2 (written with > again)
+     2	line 3 (written with >>)
+     3	line 4 (written with >>)
+

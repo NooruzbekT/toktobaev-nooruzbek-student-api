@@ -1,0 +1,7 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git init -b main
+Initialized empty Git repository in /home/nooke/toktobaev-nooruzbek-student-api/.git/
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git config user.name "Nooruzbek Toktobaev" && git config user.email "nookentoktobaev@gmail.com" && git config --local --list | grep user
+user.name=Nooruzbek Toktobaev
+user.email=nookentoktobaev@gmail.com
+

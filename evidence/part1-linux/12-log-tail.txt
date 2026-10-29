@@ -1,0 +1,7 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ tail -n 5 logs/Toktobaev_Nooruzbek_system_report.log
+Date / time  : 2026-10-29 18:57:29 +05
+Username     : nooke
+Hostname     : NooruzbekT
+
+---- Operating system and kernel ----
+

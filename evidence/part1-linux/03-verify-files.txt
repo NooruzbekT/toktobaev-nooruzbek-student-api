@@ -1,0 +1,17 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ for f in scripts logs backups src Dockerfile docker-compose.yml Jenkinsfile build.gradle README.md scripts/Toktobaev_Nooruzbek_system_report.sh logs/Toktobaev_Nooruzbek_system_report.log; do if test -e "$f"; then echo "OK      $f"; else echo "MISSING $f"; fi; done
+OK      scripts
+OK      logs
+OK      backups
+OK      src
+OK      Dockerfile
+OK      docker-compose.yml
+OK      Jenkinsfile
+OK      build.gradle
+OK      README.md
+OK      scripts/Toktobaev_Nooruzbek_system_report.sh
+OK      logs/Toktobaev_Nooruzbek_system_report.log
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ test -s logs/Toktobaev_Nooruzbek_system_report.log || echo "log file exists and is empty (size 0)"; wc -c logs/Toktobaev_Nooruzbek_system_report.log
+log file exists and is empty (size 0)
+0 logs/Toktobaev_Nooruzbek_system_report.log
+

@@ -1,0 +1,30 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ ps aux | grep -i java | grep -v grep || echo "No Java process is running at the moment"
+your 200x1 screen size is bogus. expect trouble
+No Java process is running at the moment
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ pgrep -a java || echo "pgrep: no java processes"
+pgrep: no java processes
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ ./gradlew clean build --daemon --console=plain 2>&1 | grep -E "Test > |BUILD"
+StudentApiIntegrationTest > infoShowsAuthor() PASSED
+StudentApiIntegrationTest > fullCrudFlow() PASSED
+StudentControllerTest > updateNonexistentStudentReturns404() PASSED
+StudentControllerTest > getNonexistentStudentReturns404WithErrorBody() PASSED
+StudentControllerTest > createReturns201WithLocation() PASSED
+StudentControllerTest > createWithInvalidDataReturns400() PASSED
+BUILD SUCCESSFUL in 30s
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ ps aux | head -1; ps aux | grep -i java | grep -v grep | cut -c1-200
+your 200x1 screen size is bogus. expect trouble
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+your 200x1 screen size is bogus. expect trouble
+nooke       6063  181  7.4 5709244 599216 ?      Ssl  19:00   0:54 /home/nooke/.local/opt/jdk-21.0.13+9/bin/java --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ pgrep -a java | cut -c1-160
+6063 /home/nooke/.local/opt/jdk-21.0.13+9/bin/java --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=ja
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ ps -o pid,ppid,user,%cpu,%mem,etime,comm -p "$(pgrep -d, java)"
+your 200x1 screen size is bogus. expect trouble
+    PID    PPID USER     %CPU %MEM     ELAPSED COMMAND
+   6063    5969 nooke     180  7.4       00:30 java
+

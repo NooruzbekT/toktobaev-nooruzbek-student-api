@@ -1,0 +1,54 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ tree -a --dirsfirst -I "evidence"
+.
+├── backups
+├── logs
+│   └── Toktobaev_Nooruzbek_system_report.log
+├── scripts
+│   └── Toktobaev_Nooruzbek_system_report.sh
+├── src
+├── Dockerfile
+├── Jenkinsfile
+├── README.md
+├── build.gradle
+└── docker-compose.yml
+
+5 directories, 7 files
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ ls -la . scripts logs backups src
+.:
+total 28
+drwxr-xr-x  7 nooke nooke 4096 Oct 29 18:57 .
+drwxr-x--- 11 nooke nooke 4096 Oct 29 18:57 ..
+-rw-r--r--  1 nooke nooke    0 Oct 29 18:57 Dockerfile
+-rw-r--r--  1 nooke nooke    0 Oct 29 18:57 Jenkinsfile
+-rw-r--r--  1 nooke nooke    0 Oct 29 18:57 README.md
+drwxr-xr-x  2 nooke nooke 4096 Oct 29 18:57 backups
+-rw-r--r--  1 nooke nooke    0 Oct 29 18:57 build.gradle
+-rw-r--r--  1 nooke nooke    0 Oct 29 18:57 docker-compose.yml
+drwxr-xr-x  6 nooke nooke 4096 Oct 29 18:57 evidence
+drwxr-xr-x  2 nooke nooke 4096 Oct 29 18:57 logs
+drwxr-xr-x  2 nooke nooke 4096 Oct 29 18:57 scripts
+drwxr-xr-x  2 nooke nooke 4096 Oct 29 18:57 src
+
+backups:
+total 8
+drwxr-xr-x 2 nooke nooke 4096 Oct 29 18:57 .
+drwxr-xr-x 7 nooke nooke 4096 Oct 29 18:57 ..
+
+logs:
+total 8
+drwxr-xr-x 2 nooke nooke 4096 Oct 29 18:57 .
+drwxr-xr-x 7 nooke nooke 4096 Oct 29 18:57 ..
+-rw-r--r-- 1 nooke nooke    0 Oct 29 18:57 Toktobaev_Nooruzbek_system_report.log
+
+scripts:
+total 8
+drwxr-xr-x 2 nooke nooke 4096 Oct 29 18:57 .
+drwxr-xr-x 7 nooke nooke 4096 Oct 29 18:57 ..
+-rw-r--r-- 1 nooke nooke    0 Oct 29 18:57 Toktobaev_Nooruzbek_system_report.sh
+
+src:
+total 8
+drwxr-xr-x 2 nooke nooke 4096 Oct 29 18:57 .
+drwxr-xr-x 7 nooke nooke 4096 Oct 29 18:57 ..
+

@@ -1,0 +1,38 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ cp README.md backups/README_Toktobaev_Nooruzbek_backup.md && ls -l backups/
+total 4
+-rw-r--r-- 1 nooke nooke 1472 Oct 29 18:57 README_Toktobaev_Nooruzbek_backup.md
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ cat backups/README_Toktobaev_Nooruzbek_backup.md | head -12
+# Student API — Nooruzbek Toktobaev
+
+**Author:** Nooruzbek Toktobaev
+
+**Description:** Spring Boot CRUD REST API for managing students — DevOps midterm project.
+
+## Stack
+
+- Java 21, Spring Boot 3.5, Gradle (wrapper)
+- PostgreSQL 16 (H2 in-memory for tests)
+- Docker, Docker Compose
+- Jenkins (declarative pipeline)
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ diff README.md backups/README_Toktobaev_Nooruzbek_backup.md && echo "diff: no differences — backup is identical to README.md"
+diff: no differences — backup is identical to README.md
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ sha256sum README.md backups/README_Toktobaev_Nooruzbek_backup.md
+eec4a50cee99fae53c36d33540dd3bcab41b20847db2021f8136ecb5495f03b2  README.md
+eec4a50cee99fae53c36d33540dd3bcab41b20847db2021f8136ecb5495f03b2  backups/README_Toktobaev_Nooruzbek_backup.md
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ ls -l scripts/ backups/ logs/
+backups/:
+total 4
+-rw-r--r-- 1 nooke nooke 1472 Oct 29 18:57 README_Toktobaev_Nooruzbek_backup.md
+
+logs/:
+total 8
+-rw-r--r-- 1 nooke nooke 4361 Oct 29 18:57 Toktobaev_Nooruzbek_system_report.log
+
+scripts/:
+total 4
+-rwxr--r-- 1 nooke nooke 2976 Oct 29 18:57 Toktobaev_Nooruzbek_system_report.sh
+

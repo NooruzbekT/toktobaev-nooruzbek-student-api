@@ -1,0 +1,16 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ grep -n "Toktobaev" logs/Toktobaev_Nooruzbek_system_report.log > logs/Toktobaev_Nooruzbek_log_analysis.txt
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ ls -l logs/ && wc -l logs/Toktobaev_Nooruzbek_log_analysis.txt
+total 12
+-rw-r--r-- 1 nooke nooke  238 Oct 29 18:57 Toktobaev_Nooruzbek_log_analysis.txt
+-rw-r--r-- 1 nooke nooke 4361 Oct 29 18:57 Toktobaev_Nooruzbek_system_report.log
+6 logs/Toktobaev_Nooruzbek_log_analysis.txt
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ cat logs/Toktobaev_Nooruzbek_log_analysis.txt
+2: SYSTEM REPORT — Nooruzbek Toktobaev
+4:Student name : Nooruzbek Toktobaev
+45: SYSTEM REPORT — Nooruzbek Toktobaev
+47:Student name : Nooruzbek Toktobaev
+88: SYSTEM REPORT — Nooruzbek Toktobaev
+90:Student name : Nooruzbek Toktobaev
+

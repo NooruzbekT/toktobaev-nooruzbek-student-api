@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: toktobaev-nooruzbek-student-api
+  datasource:
+    # All DB settings come from environment variables (see docker-compose.yml / .env.example)
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/students}
+    username: ${SPRING_DATASOURCE_USERNAME:}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+app:
+  name: Student API
+  author: Nooruzbek Toktobaev
