@@ -1,0 +1,74 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" "http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/2/api/json?tree=number,result,duration,actions%5Bcauses%5BshortDescription%5D,parameters%5Bname,value%5D,lastBuiltRevision%5BSHA1,branch%5Bname%5D%5D%5D" | jq '{number, result, duration, causes: [.actions[].causes? // empty | .[].shortDescription], parameters: [.actions[].parameters? // empty | .[] | {(.name): .value}], revision: ([.actions[].lastBuiltRevision? // empty] | first | {SHA1, branch: .branch[0].name})}'
+{
+  "number": 2,
+  "result": "FAILURE",
+  "duration": 76314,
+  "causes": [
+    "Started by user Nooruzbek Toktobaev"
+  ],
+  "parameters": [
+    {
+      "BRANCH": "test/toktobaev-nooruzbek-pipeline-failure"
+    }
+  ],
+  "revision": {
+    "SHA1": "26c0eb12c5c190deccf35f844df477a99172d570",
+    "branch": "refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure"
+  }
+}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/2/wfapi/describe | jq -r '"Build #\(.id): \(.status)", (.stages[] | "  \(.name)\t\(.status)\t\(.durationMillis) ms")' | column -t -s $'\t'
+Build #2: FAILED                      
+  Declarative: Checkout SCM  SUCCESS  1349 ms
+  Declarative: Tool Install  SUCCESS  168 ms
+  Checkout                   SUCCESS  1393 ms
+  Build                      SUCCESS  22272 ms
+  Test                       FAILED   43773 ms
+  Docker Build               FAILED   264 ms
+  Verify                     FAILED   303 ms
+  Declarative: Post Actions  SUCCESS  137 ms
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/2/consoleText | grep -E 'Started by|Checking out Revision|Build by|Commit |Test > .*(PASSED|FAILED)|AssertionError|Expected|Actual|tests completed|BUILD FAILED|script returned exit code|Stage "|FAILURE:|Finished:' | cut -c1-190
+Started by user Nooruzbek Toktobaev
+Checking out Revision 26c0eb12c5c190deccf35f844df477a99172d570 (refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure)
+Commit message: "test: intentional failing test for pipeline demo — Toktobaev Nooruzbek"
+Checking out Revision 26c0eb12c5c190deccf35f844df477a99172d570 (refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure)
+Commit message: "test: intentional failing test for pipeline demo — Toktobaev Nooruzbek"
+[2026-10-29T15:04:32.259Z] Checking out Revision 26c0eb12c5c190deccf35f844df477a99172d570 (refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure)
+[2026-10-29T15:04:32.276Z] Commit message: "test: intentional failing test for pipeline demo — Toktobaev Nooruzbek"
+[2026-10-29T15:04:32.316Z] Build by Nooruzbek Toktobaev
+[2026-10-29T15:04:32.591Z] + git log -1 --format=Commit %h by %an: %s
+[2026-10-29T15:04:32.591Z] Commit 26c0eb1 by Nooruzbek Toktobaev: test: intentional failing test for pipeline demo — Toktobaev Nooruzbek
+[2026-10-29T15:05:36.900Z] StudentApiIntegrationTest > infoShowsAuthor() PASSED
+[2026-10-29T15:05:36.901Z] StudentApiIntegrationTest > fullCrudFlow() PASSED
+[2026-10-29T15:05:36.901Z] StudentSearchTest > blankLastNameReturnsAllStudents() PASSED
+[2026-10-29T15:05:36.901Z] StudentSearchTest > searchByLastNameIsCaseInsensitiveAndPartial() PASSED
+[2026-10-29T15:05:36.901Z] StudentControllerTest > updateNonexistentStudentReturns404() PASSED
+[2026-10-29T15:05:36.901Z] StudentControllerTest > getNonexistentStudentReturns404WithErrorBody() PASSED
+[2026-10-29T15:05:37.152Z] StudentControllerTest > createReturns201WithLocation() FAILED
+[2026-10-29T15:05:37.152Z]     java.lang.AssertionError: JSON path "$.lastName" expected:<Toktobayev> but was:<Toktobaev>
+[2026-10-29T15:05:37.152Z]         at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:61)
+[2026-10-29T15:05:37.152Z]         at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:128)
+[2026-10-29T15:05:37.152Z] StudentControllerTest > createWithInvalidDataReturns400() PASSED
+[2026-10-29T15:05:37.705Z] 8 tests completed, 1 failed
+[2026-10-29T15:05:37.956Z] FAILURE: Build failed with an exception.
+[2026-10-29T15:05:37.957Z] BUILD FAILED in 42s
+Stage "Docker Build" skipped due to earlier failure(s)
+Stage "Verify" skipped due to earlier failure(s)
+[2026-10-29T15:05:39.675Z] FAILURE: pipeline of Nooruzbek Toktobaev failed — see the stage log above
+ERROR: script returned exit code 1
+Finished: FAILURE
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" "http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/2/testReport/api/json?tree=failCount,passCount,skipCount,suites%5Bcases%5BclassName,name,status,errorDetails%5D%5D" | jq '{failCount, passCount, failed: [.suites[].cases[] | select(.status=="FAILED" or .status=="REGRESSION") | {className, name, errorDetails}]}'
+{
+  "failCount": 1,
+  "passCount": 7,
+  "failed": [
+    {
+      "className": "kg.toktobaev.nooruzbek.studentapi.student.StudentControllerTest",
+      "name": "createReturns201WithLocation()",
+      "errorDetails": "java.lang.AssertionError: JSON path \"$.lastName\" expected:<Toktobayev> but was:<Toktobaev>"
+    }
+  ]
+}
+

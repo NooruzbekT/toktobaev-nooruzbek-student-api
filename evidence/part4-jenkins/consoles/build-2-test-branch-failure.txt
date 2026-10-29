@@ -1,0 +1,228 @@
+Started by user Nooruzbek Toktobaev
+Checking out git https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git into /var/jenkins_home/workspace/Toktobaev_Nooruzbek_Student_API@script/146e9b6eb564142c75babc7216a63702e7640b054aacdfcd6903b413ef199b0b to read Jenkinsfile
+The recommended git tool is: NONE
+using credential github-token
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/Toktobaev_Nooruzbek_Student_API@script/146e9b6eb564142c75babc7216a63702e7640b054aacdfcd6903b413ef199b0b/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git # timeout=10
+Fetching upstream changes from https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+using GIT_ASKPASS to set credentials GitHub token of Nooruzbek Toktobaev for checkout
+ > git fetch --tags --force --progress -- https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure^{commit} # timeout=10
+Checking out Revision 26c0eb12c5c190deccf35f844df477a99172d570 (refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 26c0eb12c5c190deccf35f844df477a99172d570 # timeout=10
+Commit message: "test: intentional failing test for pipeline demo — Toktobaev Nooruzbek"
+First time build. Skipping changelog.
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/Toktobaev_Nooruzbek_Student_API
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: NONE
+using credential github-token
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/Toktobaev_Nooruzbek_Student_API/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git # timeout=10
+Fetching upstream changes from https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+using GIT_ASKPASS to set credentials GitHub token of Nooruzbek Toktobaev for checkout
+ > git fetch --tags --force --progress -- https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure^{commit} # timeout=10
+Checking out Revision 26c0eb12c5c190deccf35f844df477a99172d570 (refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 26c0eb12c5c190deccf35f844df477a99172d570 # timeout=10
+Commit message: "test: intentional failing test for pipeline demo — Toktobaev Nooruzbek"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Tool Install)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] checkout
+[2026-10-29T15:04:31.469Z] The recommended git tool is: NONE
+[2026-10-29T15:04:31.469Z] using credential github-token
+[2026-10-29T15:04:31.477Z]  > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/Toktobaev_Nooruzbek_Student_API/.git # timeout=10
+[2026-10-29T15:04:31.483Z] Fetching changes from the remote Git repository
+[2026-10-29T15:04:31.486Z]  > git config remote.origin.url https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git # timeout=10
+[2026-10-29T15:04:31.492Z] Fetching upstream changes from https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git
+[2026-10-29T15:04:31.493Z]  > git --version # timeout=10
+[2026-10-29T15:04:31.498Z]  > git --version # 'git version 2.47.3'
+[2026-10-29T15:04:31.498Z] using GIT_ASKPASS to set credentials GitHub token of Nooruzbek Toktobaev for checkout
+[2026-10-29T15:04:31.505Z]  > git fetch --tags --force --progress -- https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2026-10-29T15:04:32.252Z]  > git rev-parse refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure^{commit} # timeout=10
+[2026-10-29T15:04:32.259Z] Checking out Revision 26c0eb12c5c190deccf35f844df477a99172d570 (refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure)
+[2026-10-29T15:04:32.259Z]  > git config core.sparsecheckout # timeout=10
+[2026-10-29T15:04:32.265Z]  > git checkout -f 26c0eb12c5c190deccf35f844df477a99172d570 # timeout=10
+[2026-10-29T15:04:32.276Z] Commit message: "test: intentional failing test for pipeline demo — Toktobaev Nooruzbek"
+[Pipeline] echo
+[2026-10-29T15:04:32.316Z] Build by Nooruzbek Toktobaev
+[Pipeline] sh
+[2026-10-29T15:04:32.591Z] + git log -1 --format=Commit %h by %an: %s
+[2026-10-29T15:04:32.591Z] Commit 26c0eb1 by Nooruzbek Toktobaev: test: intentional failing test for pipeline demo — Toktobaev Nooruzbek
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+[2026-10-29T15:04:32.926Z] Compiling Student API of Nooruzbek Toktobaev with Gradle
+[Pipeline] sh
+[2026-10-29T15:04:33.212Z] + chmod +x gradlew
+[Pipeline] sh
+[2026-10-29T15:04:33.493Z] + ./gradlew clean assemble --no-daemon
+[2026-10-29T15:04:34.838Z] To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+[2026-10-29T15:04:36.703Z] Daemon will be stopped at the end of the build 
+[2026-10-29T15:04:50.758Z] > Task :clean
+[2026-10-29T15:04:50.758Z] > Task :bootBuildInfo
+[2026-10-29T15:04:53.270Z] > Task :compileJava
+[2026-10-29T15:04:53.270Z] > Task :processResources
+[2026-10-29T15:04:53.270Z] > Task :classes
+[2026-10-29T15:04:53.270Z] > Task :resolveMainClassName
+[2026-10-29T15:04:54.618Z] > Task :bootJar
+[2026-10-29T15:04:54.618Z] > Task :jar SKIPPED
+[2026-10-29T15:04:54.618Z] > Task :assemble
+[2026-10-29T15:04:54.618Z] 
+[2026-10-29T15:04:54.618Z] BUILD SUCCESSFUL in 21s
+[2026-10-29T15:04:54.618Z] 6 actionable tasks: 6 executed
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+[2026-10-29T15:04:55.300Z] Running automated tests for Nooruzbek Toktobaev
+[Pipeline] sh
+[2026-10-29T15:04:55.591Z] + ./gradlew test --no-daemon
+[2026-10-29T15:04:57.455Z] To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+[2026-10-29T15:05:00.687Z] Daemon will be stopped at the end of the build 
+[2026-10-29T15:05:14.770Z] > Task :bootBuildInfo
+[2026-10-29T15:05:14.770Z] > Task :compileJava UP-TO-DATE
+[2026-10-29T15:05:14.770Z] > Task :processResources UP-TO-DATE
+[2026-10-29T15:05:14.770Z] > Task :classes
+[2026-10-29T15:05:18.909Z] > Task :compileTestJava
+[2026-10-29T15:05:18.909Z] > Task :processTestResources
+[2026-10-29T15:05:18.909Z] > Task :testClasses
+[2026-10-29T15:05:36.900Z] 
+[2026-10-29T15:05:36.900Z] > Task :test
+[2026-10-29T15:05:36.900Z] 
+[2026-10-29T15:05:36.900Z] StudentApiIntegrationTest > infoShowsAuthor() PASSED
+[2026-10-29T15:05:36.900Z] 
+[2026-10-29T15:05:36.901Z] StudentApiIntegrationTest > fullCrudFlow() PASSED
+[2026-10-29T15:05:36.901Z] 
+[2026-10-29T15:05:36.901Z] StudentSearchTest > blankLastNameReturnsAllStudents() PASSED
+[2026-10-29T15:05:36.901Z] 
+[2026-10-29T15:05:36.901Z] StudentSearchTest > searchByLastNameIsCaseInsensitiveAndPartial() PASSED
+[2026-10-29T15:05:36.901Z] 
+[2026-10-29T15:05:36.901Z] StudentControllerTest > updateNonexistentStudentReturns404() PASSED
+[2026-10-29T15:05:36.901Z] 
+[2026-10-29T15:05:36.901Z] StudentControllerTest > getNonexistentStudentReturns404WithErrorBody() PASSED
+[2026-10-29T15:05:37.152Z] 
+[2026-10-29T15:05:37.152Z] StudentControllerTest > createReturns201WithLocation() FAILED
+[2026-10-29T15:05:37.152Z]     java.lang.AssertionError: JSON path "$.lastName" expected:<Toktobayev> but was:<Toktobaev>
+[2026-10-29T15:05:37.152Z]         at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:61)
+[2026-10-29T15:05:37.152Z]         at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:128)
+[2026-10-29T15:05:37.152Z]         at org.springframework.test.util.JsonPathExpectationsHelper.assertValue(JsonPathExpectationsHelper.java:172)
+[2026-10-29T15:05:37.152Z]         at org.springframework.test.web.servlet.result.JsonPathResultMatchers.lambda$value$2(JsonPathResultMatchers.java:112)
+[2026-10-29T15:05:37.152Z]         at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+[2026-10-29T15:05:37.152Z]         at kg.toktobaev.nooruzbek.studentapi.student.StudentControllerTest.createReturns201WithLocation(StudentControllerTest.java:49)
+[2026-10-29T15:05:37.152Z] 
+[2026-10-29T15:05:37.152Z] StudentControllerTest > createWithInvalidDataReturns400() PASSED
+[2026-10-29T15:05:37.152Z] 
+[2026-10-29T15:05:37.152Z] 2026-10-29T15:05:37.058Z  INFO 2876 --- [toktobaev-nooruzbek-student-api] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+[2026-10-29T15:05:37.152Z] 2026-10-29T15:05:37.069Z  INFO 2876 --- [toktobaev-nooruzbek-student-api] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+[2026-10-29T15:05:37.152Z] 2026-10-29T15:05:37.078Z  INFO 2876 --- [toktobaev-nooruzbek-student-api] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+[2026-10-29T15:05:37.705Z] 
+[2026-10-29T15:05:37.705Z] > Task :test FAILED
+[2026-10-29T15:05:37.705Z] 
+[2026-10-29T15:05:37.705Z] 8 tests completed, 1 failed
+[2026-10-29T15:05:37.956Z] 
+[2026-10-29T15:05:37.956Z] [Incubating] Problems report is available at: file:///var/jenkins_home/workspace/Toktobaev_Nooruzbek_Student_API/build/reports/problems/problems-report.html
+[2026-10-29T15:05:37.956Z] 
+[2026-10-29T15:05:37.956Z] FAILURE: Build failed with an exception.
+[2026-10-29T15:05:37.956Z] 
+[2026-10-29T15:05:37.956Z] * What went wrong:
+[2026-10-29T15:05:37.956Z] Execution failed for task ':test'.
+[2026-10-29T15:05:37.957Z] > There were failing tests. See the report at: file:///var/jenkins_home/workspace/Toktobaev_Nooruzbek_Student_API/build/reports/tests/test/index.html
+[2026-10-29T15:05:37.957Z] 
+[2026-10-29T15:05:37.957Z] * Try:
+[2026-10-29T15:05:37.957Z] > Run with --scan to get full insights.
+[2026-10-29T15:05:37.957Z] 
+[2026-10-29T15:05:37.957Z] Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+[2026-10-29T15:05:37.957Z] 
+[2026-10-29T15:05:37.957Z] You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+[2026-10-29T15:05:37.957Z] 
+[2026-10-29T15:05:37.957Z] For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+[2026-10-29T15:05:37.957Z] 
+[2026-10-29T15:05:37.957Z] BUILD FAILED in 42s
+[2026-10-29T15:05:37.957Z] 6 actionable tasks: 4 executed, 2 up-to-date
+Post stage
+[Pipeline] junit
+[2026-10-29T15:05:38.484Z] Recording test results
+[2026-10-29T15:05:38.534Z] [Checks API] No suitable checks publisher found.
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Build)
+Stage "Docker Build" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Verify)
+Stage "Verify" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+[2026-10-29T15:05:39.675Z] FAILURE: pipeline of Nooruzbek Toktobaev failed — see the stage log above
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+ERROR: script returned exit code 1
+Finished: FAILURE

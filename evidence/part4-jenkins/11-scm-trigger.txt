@@ -1,0 +1,19 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git diff --stat
+ README.md                                    | 2 ++
+ backups/README_Toktobaev_Nooruzbek_backup.md | 2 ++
+ 2 files changed, 4 insertions(+)
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git add README.md backups/README_Toktobaev_Nooruzbek_backup.md && git commit -q -m 'docs: link midterm report from README — Toktobaev Nooruzbek' && git push origin main 2>&1 | tail -1 && date -u '+pushed at %H:%M:%S UTC'
+   014f1e7..650920a  main -> main
+pushed at 15:36:31 UTC
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ for i in $(seq 1 40); do n=$(curl -s -u "admin:$JP" 'http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/api/json?tree=lastBuild%5Bnumber%5D' | jq .lastBuild.number); if [ "$n" -gt 5 ]; then echo "$(date -u +%H:%M:%S) UTC new build #$n started automatically"; break; fi; echo "$(date -u +%H:%M:%S) UTC waiting for SCM polling... last build #$n"; sleep 15; done
+15:36:32 UTC waiting for SCM polling... last build #5
+15:36:47 UTC waiting for SCM polling... last build #5
+15:37:01 UTC waiting for SCM polling... last build #5
+15:37:16 UTC waiting for SCM polling... last build #5
+15:37:31 UTC waiting for SCM polling... last build #5
+15:37:46 UTC waiting for SCM polling... last build #5
+15:38:00 UTC waiting for SCM polling... last build #5
+15:38:15 UTC new build #6 started automatically
+

@@ -1,0 +1,75 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git diff
+diff --git a/src/test/java/kg/toktobaev/nooruzbek/studentapi/student/StudentControllerTest.java b/src/test/java/kg/toktobaev/nooruzbek/studentapi/student/StudentControllerTest.java
+index 3ffb9cd..46372c7 100755
+--- a/src/test/java/kg/toktobaev/nooruzbek/studentapi/student/StudentControllerTest.java
++++ b/src/test/java/kg/toktobaev/nooruzbek/studentapi/student/StudentControllerTest.java
+@@ -46,7 +46,7 @@ class StudentControllerTest {
+                 .andExpect(status().isCreated())
+                 .andExpect(header().string("Location", "/api/students/1"))
+                 .andExpect(jsonPath("$.firstName").value("Nooruzbek"))
+-                .andExpect(jsonPath("$.lastName").value("Toktobayev"));
++                .andExpect(jsonPath("$.lastName").value("Toktobaev"));
+     }
+ 
+     @Test
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git commit -q -m 'fix(test): restore correct expected last name after pipeline demo — Toktobaev Nooruzbek' src/test/java/kg/toktobaev/nooruzbek/studentapi/student/StudentControllerTest.java && git push origin test/toktobaev-nooruzbek-pipeline-failure 2>&1 | tail -2
+To https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git
+   26c0eb1..97146c4  test/toktobaev-nooruzbek-pipeline-failure -> test/toktobaev-nooruzbek-pipeline-failure
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" "http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/3/api/json?tree=number,result,duration,actions%5Bcauses%5BshortDescription%5D,parameters%5Bname,value%5D,lastBuiltRevision%5BSHA1,branch%5Bname%5D%5D%5D" | jq '{number, result, duration, causes: [.actions[].causes? // empty | .[].shortDescription], parameters: [.actions[].parameters? // empty | .[] | {(.name): .value}], revision: ([.actions[].lastBuiltRevision? // empty] | first | {SHA1, branch: .branch[0].name})}'
+{
+  "number": 3,
+  "result": "SUCCESS",
+  "duration": 63306,
+  "causes": [
+    "Started by user Nooruzbek Toktobaev"
+  ],
+  "parameters": [
+    {
+      "BRANCH": "test/toktobaev-nooruzbek-pipeline-failure"
+    }
+  ],
+  "revision": {
+    "SHA1": "97146c43524469e8f61af5f1bc29f5d783edeed7",
+    "branch": "refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure"
+  }
+}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/3/wfapi/describe | jq -r '"Build #\(.id): \(.status)", (.stages[] | "  \(.name)\t\(.status)\t\(.durationMillis) ms")' | column -t -s $'\t'
+Build #3: SUCCESS                     
+  Declarative: Checkout SCM  SUCCESS  1176 ms
+  Declarative: Tool Install  SUCCESS  121 ms
+  Checkout                   SUCCESS  1355 ms
+  Build                      SUCCESS  20018 ms
+  Test                       SUCCESS  34049 ms
+  Docker Build               SUCCESS  2649 ms
+  Verify                     SUCCESS  1308 ms
+  Declarative: Post Actions  SUCCESS  111 ms
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/3/consoleText | grep -E 'Started by|Checking out Revision|Build by|Test > |BUILD SUCCESSFUL|Verify OK|SUCCESS:|Finished:' | cut -c1-190
+Started by user Nooruzbek Toktobaev
+Checking out Revision 97146c43524469e8f61af5f1bc29f5d783edeed7 (refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure)
+Checking out Revision 97146c43524469e8f61af5f1bc29f5d783edeed7 (refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure)
+[2026-10-29T15:06:01.004Z] Checking out Revision 97146c43524469e8f61af5f1bc29f5d783edeed7 (refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure)
+[2026-10-29T15:06:01.052Z] Build by Nooruzbek Toktobaev
+[2026-10-29T15:06:20.957Z] BUILD SUCCESSFUL in 18s
+[2026-10-29T15:06:54.044Z] StudentApiIntegrationTest > infoShowsAuthor() PASSED
+[2026-10-29T15:06:54.044Z] StudentApiIntegrationTest > fullCrudFlow() PASSED
+[2026-10-29T15:06:54.044Z] StudentSearchTest > blankLastNameReturnsAllStudents() PASSED
+[2026-10-29T15:06:54.044Z] StudentSearchTest > searchByLastNameIsCaseInsensitiveAndPartial() PASSED
+[2026-10-29T15:06:54.957Z] StudentControllerTest > updateNonexistentStudentReturns404() PASSED
+[2026-10-29T15:06:54.957Z] StudentControllerTest > getNonexistentStudentReturns404WithErrorBody() PASSED
+[2026-10-29T15:06:54.957Z] StudentControllerTest > createReturns201WithLocation() PASSED
+[2026-10-29T15:06:54.957Z] StudentControllerTest > createWithInvalidDataReturns400() PASSED
+[2026-10-29T15:06:55.208Z] BUILD SUCCESSFUL in 32s
+[2026-10-29T15:06:59.533Z] Verify OK: image toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek exists (student: Nooruzbek Toktobaev)
+[2026-10-29T15:06:59.726Z] SUCCESS: pipeline of Nooruzbek Toktobaev finished, image toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek is ready
+Finished: SUCCESS
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git log --oneline --graph -4 test/toktobaev-nooruzbek-pipeline-failure
+* 97146c4 fix(test): restore correct expected last name after pipeline demo — Toktobaev Nooruzbek
+* 26c0eb1 test: intentional failing test for pipeline demo — Toktobaev Nooruzbek
+* 69d2035 ci: add declarative Jenkins pipeline (Checkout, Build, Test, Docker Build, Verify) — Toktobaev Nooruzbek
+* 63dc1c4 docs(evidence): add Docker and API testing evidence — Toktobaev Nooruzbek
+

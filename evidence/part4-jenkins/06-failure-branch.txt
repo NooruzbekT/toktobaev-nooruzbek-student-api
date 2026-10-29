@@ -1,0 +1,23 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git switch -c test/toktobaev-nooruzbek-pipeline-failure
+Switched to a new branch 'test/toktobaev-nooruzbek-pipeline-failure'
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git diff
+diff --git a/src/test/java/kg/toktobaev/nooruzbek/studentapi/student/StudentControllerTest.java b/src/test/java/kg/toktobaev/nooruzbek/studentapi/student/StudentControllerTest.java
+index 46372c7..3ffb9cd 100755
+--- a/src/test/java/kg/toktobaev/nooruzbek/studentapi/student/StudentControllerTest.java
++++ b/src/test/java/kg/toktobaev/nooruzbek/studentapi/student/StudentControllerTest.java
+@@ -46,7 +46,7 @@ class StudentControllerTest {
+                 .andExpect(status().isCreated())
+                 .andExpect(header().string("Location", "/api/students/1"))
+                 .andExpect(jsonPath("$.firstName").value("Nooruzbek"))
+-                .andExpect(jsonPath("$.lastName").value("Toktobaev"));
++                .andExpect(jsonPath("$.lastName").value("Toktobayev"));
+     }
+ 
+     @Test
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git commit -q -m 'test: intentional failing test for pipeline demo — Toktobaev Nooruzbek' src/test/java/kg/toktobaev/nooruzbek/studentapi/student/StudentControllerTest.java && git push -u origin test/toktobaev-nooruzbek-pipeline-failure 2>&1 | tail -3
+To https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git
+ * [new branch]      test/toktobaev-nooruzbek-pipeline-failure -> test/toktobaev-nooruzbek-pipeline-failure
+branch 'test/toktobaev-nooruzbek-pipeline-failure' set up to track 'origin/test/toktobaev-nooruzbek-pipeline-failure'.
+

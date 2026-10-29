@@ -1,0 +1,18 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-jenkins$ ./start-jenkins.sh 2>&1 | grep -vE "^#|^ *$" | tail -8
+6284a5464ac22f52db80254bea140c3e9c8765b0ca8a3fdca8222d6f22ad9e9c
+Jenkins is starting on http://localhost:8090 (user: admin)
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-jenkins$ docker ps --filter name=toktobaev-nooruzbek --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"
+NAMES                          IMAGE                                                      STATUS                   PORTS
+toktobaev-nooruzbek-jenkins    toktobaev-nooruzbek-jenkins:lts-jdk21                      Up 26 seconds            0.0.0.0:8090->8080/tcp, [::]:8090->8080/tcp
+toktobaev-nooruzbek-app        toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek   Up 8 minutes             0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+toktobaev-nooruzbek-postgres   postgres:16-alpine                                         Up 8 minutes (healthy)   5432/tcp
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-jenkins$ docker exec toktobaev-nooruzbek-jenkins sh -c "java -version 2>&1 | head -1; docker version --format \"docker client {{.Client.Version}} / server {{.Server.Version}}\"; git --version"
+openjdk version "21.0.13" 2026-10-20 LTS
+docker client 28.5.2 / server 28.4.0
+git version 2.47.3
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-jenkins$ docker logs toktobaev-nooruzbek-jenkins 2>&1 | grep -E "Jenkins is fully up and running|configuration-as-code|Processed|seed|GeneratedJob" | cut -c1-200 | tail -6
+2026-10-29 14:58:05.219+0000 [id=39]	INFO	hudson.lifecycle.Lifecycle#onReady: Jenkins is fully up and running
+

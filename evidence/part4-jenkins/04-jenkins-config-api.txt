@@ -1,0 +1,66 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-jenkins$ curl -s -u "admin:$JP" "http://localhost:8090/api/json?tree=mode,nodeDescription,numExecutors,jobs%5Bname,url%5D" | jq .
+{
+  "_class": "hudson.model.Hudson",
+  "mode": "NORMAL",
+  "nodeDescription": "the Jenkins controller's built-in node",
+  "numExecutors": 1,
+  "jobs": [
+    {
+      "_class": "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+      "name": "Toktobaev_Nooruzbek_Student_API",
+      "url": "http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/"
+    }
+  ]
+}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-jenkins$ curl -s -u "admin:$JP" "http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/api/json?tree=name,description,buildable,property%5BparameterDefinitions%5Bname,defaultParameterValue%5Bvalue%5D%5D%5D" | jq .
+{
+  "_class": "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+  "description": "CI pipeline of the Spring Boot Student API by Nooruzbek Toktobaev: Checkout, Build, Test, Docker Build, Verify",
+  "name": "Toktobaev_Nooruzbek_Student_API",
+  "buildable": true,
+  "property": [
+    {
+      "_class": "hudson.model.ParametersDefinitionProperty",
+      "parameterDefinitions": [
+        {
+          "_class": "hudson.model.StringParameterDefinition",
+          "defaultParameterValue": {
+            "_class": "hudson.model.StringParameterValue",
+            "value": "main"
+          },
+          "name": "BRANCH"
+        }
+      ]
+    },
+    {
+      "_class": "org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty"
+    }
+  ]
+}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-jenkins$ curl -s -u "admin:$JP" "http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/config.xml" | grep -E "<url>|<credentialsId>|<name>\*/|<scriptPath>|<spec>"
+          <spec>H/2 * * * *</spec>
+          <url>https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git</url>
+          <credentialsId>github-token</credentialsId>
+          <name>*/${BRANCH}</name>
+    <scriptPath>Jenkinsfile</scriptPath>
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-jenkins$ curl -s -u "admin:$JP" "http://localhost:8090/credentials/store/system/domain/_/api/json?depth=1" | jq "{credentials: [.credentials[] | {id, typeName, displayName}]}"
+{
+  "credentials": [
+    {
+      "id": "github-token",
+      "typeName": "Username with password",
+      "displayName": "NooruzbekT/****** (GitHub token of Nooruzbek Toktobaev for checkout)"
+    }
+  ]
+}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" "http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/config.xml" | grep -E "<url>|<credentialsId>|<name>\*/|<scriptPath>|<spec>"
+          <spec>H/2 * * * *</spec>
+          <url>https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git</url>
+          <credentialsId>github-token</credentialsId>
+          <name>*/${BRANCH}</name>
+    <scriptPath>Jenkinsfile</scriptPath>
+

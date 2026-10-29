@@ -1,0 +1,26 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker exec toktobaev-nooruzbek-jenkins cat /var/jenkins_home/jobs/Toktobaev_Nooruzbek_Student_API/scm-polling.log | grep -vE "git --version|recommended git tool|GIT_ASKPASS|using credential"
+Started on Oct 29, 2026, 3:38:00 PM
+Using strategy: Default
+[poll] Last Built Revision: Revision 014f1e7bd89eee1f69cc18b1cadc9b4d771d2cfc (refs/remotes/origin/main)
+ > git ls-remote -h -- https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git # timeout=10
+Found 4 remote heads on https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git
+Using strategy: Default
+[poll] Last Built Revision: Revision 014f1e7bd89eee1f69cc18b1cadc9b4d771d2cfc (refs/remotes/origin/main)
+ > git ls-remote -h -- https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git # timeout=10
+Found 4 remote heads on https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git
+Using strategy: Default
+[poll] Last Built Revision: Revision 014f1e7bd89eee1f69cc18b1cadc9b4d771d2cfc (refs/remotes/origin/main)
+ > git ls-remote -h -- https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git # timeout=10
+Found 4 remote heads on https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git
+[poll] Latest remote head revision on refs/heads/main is: 650920a0b3c6d5216c067fed9866c674eae04df8
+Done. Took 3.1 sec
+Changes found
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" "http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/api/json?tree=builds%5Bnumber,result,duration,actions%5Bcauses%5BshortDescription%5D,parameters%5Bname,value%5D%5D%5D" | jq -r '.builds | reverse | .[] | "#\(.number)\t\(.result)\t\((.duration/1000|floor))s\t\([.actions[].parameters? // empty | .[] | select(.name=="BRANCH") | .value][0])\t\([.actions[].causes? // empty | .[].shortDescription][0])"' | column -t -s $'\t'
+#1  SUCCESS  196s  main                                       Started by user Nooruzbek Toktobaev
+#2  FAILURE  76s   test/toktobaev-nooruzbek-pipeline-failure  Started by user Nooruzbek Toktobaev
+#3  SUCCESS  63s   test/toktobaev-nooruzbek-pipeline-failure  Started by user Nooruzbek Toktobaev
+#4  SUCCESS  49s   main                                       Started by user Nooruzbek Toktobaev
+#5  SUCCESS  93s   main                                       Started by user Nooruzbek Toktobaev
+#6  SUCCESS  63s   main                                       Started by an SCM change
+

@@ -1,0 +1,294 @@
+Started by user Nooruzbek Toktobaev
+Checking out git https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git into /var/jenkins_home/workspace/Toktobaev_Nooruzbek_Student_API@script/146e9b6eb564142c75babc7216a63702e7640b054aacdfcd6903b413ef199b0b to read Jenkinsfile
+The recommended git tool is: NONE
+using credential github-token
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/Toktobaev_Nooruzbek_Student_API@script/146e9b6eb564142c75babc7216a63702e7640b054aacdfcd6903b413ef199b0b/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git # timeout=10
+Fetching upstream changes from https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+using GIT_ASKPASS to set credentials GitHub token of Nooruzbek Toktobaev for checkout
+ > git fetch --tags --force --progress -- https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure^{commit} # timeout=10
+Checking out Revision 97146c43524469e8f61af5f1bc29f5d783edeed7 (refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 97146c43524469e8f61af5f1bc29f5d783edeed7 # timeout=10
+Commit message: "fix(test): restore correct expected last name after pipeline demo — Toktobaev Nooruzbek"
+ > git rev-list --no-walk 26c0eb12c5c190deccf35f844df477a99172d570 # timeout=10
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/Toktobaev_Nooruzbek_Student_API
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: NONE
+using credential github-token
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/Toktobaev_Nooruzbek_Student_API/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git # timeout=10
+Fetching upstream changes from https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+using GIT_ASKPASS to set credentials GitHub token of Nooruzbek Toktobaev for checkout
+ > git fetch --tags --force --progress -- https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure^{commit} # timeout=10
+Checking out Revision 97146c43524469e8f61af5f1bc29f5d783edeed7 (refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 97146c43524469e8f61af5f1bc29f5d783edeed7 # timeout=10
+Commit message: "fix(test): restore correct expected last name after pipeline demo — Toktobaev Nooruzbek"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Tool Install)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] checkout
+[2026-10-29T15:06:00.199Z] The recommended git tool is: NONE
+[2026-10-29T15:06:00.199Z] using credential github-token
+[2026-10-29T15:06:00.209Z]  > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/Toktobaev_Nooruzbek_Student_API/.git # timeout=10
+[2026-10-29T15:06:00.214Z] Fetching changes from the remote Git repository
+[2026-10-29T15:06:00.216Z]  > git config remote.origin.url https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git # timeout=10
+[2026-10-29T15:06:00.222Z] Fetching upstream changes from https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git
+[2026-10-29T15:06:00.222Z]  > git --version # timeout=10
+[2026-10-29T15:06:00.226Z]  > git --version # 'git version 2.47.3'
+[2026-10-29T15:06:00.226Z] using GIT_ASKPASS to set credentials GitHub token of Nooruzbek Toktobaev for checkout
+[2026-10-29T15:06:00.232Z]  > git fetch --tags --force --progress -- https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2026-10-29T15:06:00.998Z]  > git rev-parse refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure^{commit} # timeout=10
+[2026-10-29T15:06:01.004Z] Checking out Revision 97146c43524469e8f61af5f1bc29f5d783edeed7 (refs/remotes/origin/test/toktobaev-nooruzbek-pipeline-failure)
+[2026-10-29T15:06:01.004Z]  > git config core.sparsecheckout # timeout=10
+[2026-10-29T15:06:01.009Z]  > git checkout -f 97146c43524469e8f61af5f1bc29f5d783edeed7 # timeout=10
+[2026-10-29T15:06:01.021Z] Commit message: "fix(test): restore correct expected last name after pipeline demo — Toktobaev Nooruzbek"
+[Pipeline] echo
+[2026-10-29T15:06:01.052Z] Build by Nooruzbek Toktobaev
+[Pipeline] sh
+[2026-10-29T15:06:01.323Z] + git log -1 --format=Commit %h by %an: %s
+[2026-10-29T15:06:01.323Z] Commit 97146c4 by Nooruzbek Toktobaev: fix(test): restore correct expected last name after pipeline demo — Toktobaev Nooruzbek
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+[2026-10-29T15:06:01.576Z] Compiling Student API of Nooruzbek Toktobaev with Gradle
+[Pipeline] sh
+[2026-10-29T15:06:01.848Z] + chmod +x gradlew
+[Pipeline] sh
+[2026-10-29T15:06:02.128Z] + ./gradlew clean assemble --no-daemon
+[2026-10-29T15:06:03.041Z] To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+[2026-10-29T15:06:04.904Z] Daemon will be stopped at the end of the build 
+[2026-10-29T15:06:14.086Z] > Task :clean
+[2026-10-29T15:06:14.086Z] > Task :bootBuildInfo
+[2026-10-29T15:06:18.212Z] > Task :compileJava
+[2026-10-29T15:06:18.213Z] > Task :processResources
+[2026-10-29T15:06:18.213Z] > Task :classes
+[2026-10-29T15:06:18.466Z] > Task :resolveMainClassName
+[2026-10-29T15:06:20.957Z] > Task :bootJar
+[2026-10-29T15:06:20.957Z] > Task :jar SKIPPED
+[2026-10-29T15:06:20.957Z] > Task :assemble
+[2026-10-29T15:06:20.957Z] 
+[2026-10-29T15:06:20.957Z] BUILD SUCCESSFUL in 18s
+[2026-10-29T15:06:20.957Z] 6 actionable tasks: 6 executed
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+[2026-10-29T15:06:21.949Z] Running automated tests for Nooruzbek Toktobaev
+[Pipeline] sh
+[2026-10-29T15:06:22.243Z] + ./gradlew test --no-daemon
+[2026-10-29T15:06:26.381Z] To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+[2026-10-29T15:06:29.616Z] Daemon will be stopped at the end of the build 
+[2026-10-29T15:06:41.729Z] > Task :bootBuildInfo
+[2026-10-29T15:06:41.729Z] > Task :compileJava UP-TO-DATE
+[2026-10-29T15:06:41.729Z] > Task :processResources UP-TO-DATE
+[2026-10-29T15:06:41.729Z] > Task :classes
+[2026-10-29T15:06:41.940Z] > Task :compileTestJava
+[2026-10-29T15:06:41.940Z] > Task :processTestResources
+[2026-10-29T15:06:41.940Z] > Task :testClasses
+[2026-10-29T15:06:54.044Z] 
+[2026-10-29T15:06:54.044Z] > Task :test
+[2026-10-29T15:06:54.044Z] 
+[2026-10-29T15:06:54.044Z] StudentApiIntegrationTest > infoShowsAuthor() PASSED
+[2026-10-29T15:06:54.044Z] 
+[2026-10-29T15:06:54.044Z] StudentApiIntegrationTest > fullCrudFlow() PASSED
+[2026-10-29T15:06:54.044Z] 
+[2026-10-29T15:06:54.044Z] StudentSearchTest > blankLastNameReturnsAllStudents() PASSED
+[2026-10-29T15:06:54.044Z] 
+[2026-10-29T15:06:54.044Z] StudentSearchTest > searchByLastNameIsCaseInsensitiveAndPartial() PASSED
+[2026-10-29T15:06:54.957Z] 
+[2026-10-29T15:06:54.957Z] StudentControllerTest > updateNonexistentStudentReturns404() PASSED
+[2026-10-29T15:06:54.957Z] 
+[2026-10-29T15:06:54.957Z] StudentControllerTest > getNonexistentStudentReturns404WithErrorBody() PASSED
+[2026-10-29T15:06:54.957Z] 
+[2026-10-29T15:06:54.957Z] StudentControllerTest > createReturns201WithLocation() PASSED
+[2026-10-29T15:06:54.957Z] 
+[2026-10-29T15:06:54.957Z] StudentControllerTest > createWithInvalidDataReturns400() PASSED
+[2026-10-29T15:06:54.957Z] 
+[2026-10-29T15:06:54.957Z] 2026-10-29T15:06:54.780Z  INFO 3467 --- [toktobaev-nooruzbek-student-api] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+[2026-10-29T15:06:54.957Z] 2026-10-29T15:06:54.792Z  INFO 3467 --- [toktobaev-nooruzbek-student-api] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+[2026-10-29T15:06:54.957Z] 2026-10-29T15:06:54.796Z  INFO 3467 --- [toktobaev-nooruzbek-student-api] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+[2026-10-29T15:06:55.208Z] 
+[2026-10-29T15:06:55.208Z] [Incubating] Problems report is available at: file:///var/jenkins_home/workspace/Toktobaev_Nooruzbek_Student_API/build/reports/problems/problems-report.html
+[2026-10-29T15:06:55.208Z] 
+[2026-10-29T15:06:55.208Z] Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+[2026-10-29T15:06:55.208Z] 
+[2026-10-29T15:06:55.208Z] You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+[2026-10-29T15:06:55.208Z] 
+[2026-10-29T15:06:55.208Z] For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+[2026-10-29T15:06:55.208Z] 
+[2026-10-29T15:06:55.208Z] BUILD SUCCESSFUL in 32s
+[2026-10-29T15:06:55.208Z] 6 actionable tasks: 4 executed, 2 up-to-date
+Post stage
+[Pipeline] junit
+[2026-10-29T15:06:55.486Z] Recording test results
+[2026-10-29T15:06:55.504Z] [Checks API] No suitable checks publisher found.
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Build)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+[2026-10-29T15:06:55.795Z] Building image toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek for Nooruzbek Toktobaev
+[Pipeline] sh
+[2026-10-29T15:06:56.071Z] + docker build -t toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek .
+[2026-10-29T15:06:56.322Z] #0 building with "default" instance using docker driver
+[2026-10-29T15:06:56.322Z] 
+[2026-10-29T15:06:56.322Z] #1 [internal] load build definition from Dockerfile
+[2026-10-29T15:06:56.322Z] #1 transferring dockerfile: 1.39kB done
+[2026-10-29T15:06:56.322Z] #1 DONE 0.0s
+[2026-10-29T15:06:56.322Z] 
+[2026-10-29T15:06:56.322Z] #2 [internal] load metadata for docker.io/library/eclipse-temurin:21-jdk
+[2026-10-29T15:06:57.671Z] #2 DONE 1.3s
+[2026-10-29T15:06:57.671Z] 
+[2026-10-29T15:06:57.671Z] #3 [internal] load metadata for docker.io/library/eclipse-temurin:21-jre-alpine
+[2026-10-29T15:06:57.672Z] #3 DONE 1.3s
+[2026-10-29T15:06:57.672Z] 
+[2026-10-29T15:06:57.672Z] #4 [internal] load .dockerignore
+[2026-10-29T15:06:57.672Z] #4 transferring context: 142B done
+[2026-10-29T15:06:57.672Z] #4 DONE 0.0s
+[2026-10-29T15:06:57.672Z] 
+[2026-10-29T15:06:57.672Z] #5 [build 1/7] FROM docker.io/library/eclipse-temurin:21-jdk@sha256:5d90b26c0784ccf55af55f97cbcf7f3969c66a06299c93bdc72649219942a48f
+[2026-10-29T15:06:57.672Z] #5 resolve docker.io/library/eclipse-temurin:21-jdk@sha256:5d90b26c0784ccf55af55f97cbcf7f3969c66a06299c93bdc72649219942a48f 0.0s done
+[2026-10-29T15:06:57.672Z] #5 DONE 0.0s
+[2026-10-29T15:06:57.672Z] 
+[2026-10-29T15:06:57.672Z] #6 [stage-1 1/4] FROM docker.io/library/eclipse-temurin:21-jre-alpine@sha256:b48e02e0ea88d7bfb305335df94923bdef394905f4147dccd52e873cf17b1088
+[2026-10-29T15:06:57.672Z] #6 resolve docker.io/library/eclipse-temurin:21-jre-alpine@sha256:b48e02e0ea88d7bfb305335df94923bdef394905f4147dccd52e873cf17b1088 0.0s done
+[2026-10-29T15:06:57.672Z] #6 DONE 0.0s
+[2026-10-29T15:06:57.672Z] 
+[2026-10-29T15:06:57.672Z] #7 [internal] load build context
+[2026-10-29T15:06:57.672Z] #7 transferring context: 15.08kB 0.0s done
+[2026-10-29T15:06:57.672Z] #7 DONE 0.0s
+[2026-10-29T15:06:57.672Z] 
+[2026-10-29T15:06:57.672Z] #8 [build 4/7] COPY gradle ./gradle
+[2026-10-29T15:06:57.673Z] #8 CACHED
+[2026-10-29T15:06:57.673Z] 
+[2026-10-29T15:06:57.673Z] #9 [build 7/7] RUN ./gradlew clean bootJar -x test --no-daemon
+[2026-10-29T15:06:57.673Z] #9 CACHED
+[2026-10-29T15:06:57.673Z] 
+[2026-10-29T15:06:57.673Z] #10 [stage-1 3/4] RUN addgroup -S student && adduser -S -G student student
+[2026-10-29T15:06:57.674Z] #10 CACHED
+[2026-10-29T15:06:57.674Z] 
+[2026-10-29T15:06:57.674Z] #11 [stage-1 2/4] WORKDIR /app
+[2026-10-29T15:06:57.674Z] #11 CACHED
+[2026-10-29T15:06:57.674Z] 
+[2026-10-29T15:06:57.674Z] #12 [build 3/7] COPY gradlew settings.gradle build.gradle gradle.properties ./
+[2026-10-29T15:06:57.674Z] #12 CACHED
+[2026-10-29T15:06:57.674Z] 
+[2026-10-29T15:06:57.674Z] #13 [build 5/7] RUN chmod +x gradlew && ./gradlew dependencies --no-daemon -q > /dev/null
+[2026-10-29T15:06:57.674Z] #13 CACHED
+[2026-10-29T15:06:57.674Z] 
+[2026-10-29T15:06:57.674Z] #14 [build 6/7] COPY src ./src
+[2026-10-29T15:06:57.674Z] #14 CACHED
+[2026-10-29T15:06:57.674Z] 
+[2026-10-29T15:06:57.674Z] #15 [build 2/7] WORKDIR /app
+[2026-10-29T15:06:57.674Z] #15 CACHED
+[2026-10-29T15:06:57.674Z] 
+[2026-10-29T15:06:57.674Z] #16 [stage-1 4/4] COPY --from=build /app/build/libs/app.jar /app/app.jar
+[2026-10-29T15:06:57.674Z] #16 CACHED
+[2026-10-29T15:06:57.674Z] 
+[2026-10-29T15:06:57.674Z] #17 exporting to image
+[2026-10-29T15:06:57.674Z] #17 exporting layers done
+[2026-10-29T15:06:57.674Z] #17 exporting manifest sha256:d2c34133bb7a893fd71722000a6b9941c32a74ccced7cc4c36f0874de9f8fd1c 0.0s done
+[2026-10-29T15:06:57.674Z] #17 exporting config sha256:1f4e6ad1fbd67a38527f9621e642c4d5bf4574441c747a421d4af51ffef5a1cd 0.0s done
+[2026-10-29T15:06:57.674Z] #17 exporting attestation manifest sha256:0f81b95a55182912a230b5d4537caee3ebb87b69e06f89fb4b30f143dc8736da 0.0s done
+[2026-10-29T15:06:57.674Z] #17 exporting manifest list sha256:676ab3a19a8e2ed9eb055f217ed7228a2ce30f231a227e854c78043f8affe3aa 0.0s done
+[2026-10-29T15:06:57.674Z] #17 naming to docker.io/library/toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek
+[2026-10-29T15:06:57.932Z] #17 naming to docker.io/library/toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek done
+[2026-10-29T15:06:57.932Z] #17 unpacking to docker.io/library/toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek 0.0s done
+[2026-10-29T15:06:57.932Z] #17 DONE 0.2s
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Verify)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
+[2026-10-29T15:06:58.961Z] + docker image inspect toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek --format Image {{.RepoTags}} created {{.Created}} size {{.Size}} bytes
+[2026-10-29T15:06:58.961Z] Image [toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek] created 2026-10-29T14:48:58.191923844Z size 124749027 bytes
+[Pipeline] sh
+[2026-10-29T15:06:59.249Z] + docker images
+[2026-10-29T15:06:59.249Z] + grep toktobaev-nooruzbek-student-api
+[2026-10-29T15:06:59.500Z] toktobaev-nooruzbek-student-api   v1.1-toktobaev-nooruzbek   676ab3a19a8e   18 minutes ago   393MB
+[2026-10-29T15:06:59.500Z] toktobaev-nooruzbek-student-api   v1.0-toktobaev-nooruzbek   72a9776244f8   20 minutes ago   393MB
+[Pipeline] echo
+[2026-10-29T15:06:59.533Z] Verify OK: image toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek exists (student: Nooruzbek Toktobaev)
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+[2026-10-29T15:06:59.726Z] SUCCESS: pipeline of Nooruzbek Toktobaev finished, image toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek is ready
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

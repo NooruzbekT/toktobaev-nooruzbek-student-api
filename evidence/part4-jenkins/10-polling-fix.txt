@@ -1,0 +1,74 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git log --oneline -1 origin/main
+733fd3a docs: add Docker and Jenkins CI sections to README — Toktobaev Nooruzbek
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker exec toktobaev-nooruzbek-jenkins tail -4 /var/jenkins_home/jobs/Toktobaev_Nooruzbek_Student_API/scm-polling.log
+ > git ls-remote -h -- https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git # timeout=10
+Found 4 remote heads on https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git
+Done. Took 2.5 sec
+No changes
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/config.xml | grep '<name>\*/'   # branch pattern with a parameter
+          <name>*/${BRANCH}</name>
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git diff
+diff --git a/Jenkinsfile b/Jenkinsfile
+index d23972a..50f70a3 100644
+--- a/Jenkinsfile
++++ b/Jenkinsfile
+@@ -32,8 +32,13 @@ pipeline {
+     stages {
+         stage('Checkout') {
+             steps {
+-                checkout scm
+-                echo "Build by ${STUDENT_NAME}"
++                // Explicit branch name (instead of the job's "*/${BRANCH}" pattern):
++                // SCM polling does not expand parameters, so it needs the real branch recorded here
++                checkout scmGit(
++                    branches: [[name: "*/${params.BRANCH}"]],
++                    userRemoteConfigs: [[url: 'https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git',
++                                         credentialsId: 'github-token']])
++                echo "Build by ${STUDENT_NAME} (branch ${params.BRANCH})"
+                 sh 'git log -1 --format="Commit %h by %an: %s"'
+             }
+         }
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git commit -q -m 'ci: check out the BRANCH parameter explicitly so SCM polling works — Toktobaev Nooruzbek' Jenkinsfile && git push origin main 2>&1 | tail -1
+   733fd3a..014f1e7  main -> main
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" "http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/5/api/json?tree=number,result,duration,actions%5Bcauses%5BshortDescription%5D,parameters%5Bname,value%5D,lastBuiltRevision%5BSHA1,branch%5Bname%5D%5D%5D" | jq '{number, result, duration, causes: [.actions[].causes? // empty | .[].shortDescription], parameters: [.actions[].parameters? // empty | .[] | {(.name): .value}], revision: ([.actions[].lastBuiltRevision? // empty] | first | {SHA1, branch: .branch[0].name})}'
+{
+  "number": 5,
+  "result": "SUCCESS",
+  "duration": 93251,
+  "causes": [
+    "Started by user Nooruzbek Toktobaev"
+  ],
+  "parameters": [
+    {
+      "BRANCH": "main"
+    }
+  ],
+  "revision": {
+    "SHA1": "014f1e7bd89eee1f69cc18b1cadc9b4d771d2cfc",
+    "branch": "refs/remotes/origin/main"
+  }
+}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/5/wfapi/describe | jq -r '"Build #\(.id): \(.status)", (.stages[] | "  \(.name)\t\(.status)\t\(.durationMillis) ms")' | column -t -s $'\t'
+Build #5: SUCCESS                     
+  Declarative: Checkout SCM  SUCCESS  1628 ms
+  Declarative: Tool Install  SUCCESS  302 ms
+  Checkout                   SUCCESS  1785 ms
+  Build                      SUCCESS  34088 ms
+  Test                       SUCCESS  45657 ms
+  Docker Build               SUCCESS  3197 ms
+  Verify                     SUCCESS  1748 ms
+  Declarative: Post Actions  SUCCESS  125 ms
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/5/consoleText | grep -E 'Checking out Revision|Build by|Finished:' | cut -c1-160
+Checking out Revision 014f1e7bd89eee1f69cc18b1cadc9b4d771d2cfc (refs/remotes/origin/main)
+Checking out Revision 014f1e7bd89eee1f69cc18b1cadc9b4d771d2cfc (refs/remotes/origin/main)
+[2026-10-29T15:35:00.808Z] Checking out Revision 014f1e7bd89eee1f69cc18b1cadc9b4d771d2cfc (refs/remotes/origin/main)
+[2026-10-29T15:35:00.883Z] Build by Nooruzbek Toktobaev (branch main)
+Finished: SUCCESS
+

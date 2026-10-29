@@ -1,0 +1,87 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ cat -n Jenkinsfile
+     1	// Jenkins declarative pipeline — Student API by Nooruzbek Toktobaev
+     2	// Stages: Checkout -> Build -> Test -> Docker Build -> Verify.
+     3	// A failing stage (compile error, failing test) stops the pipeline: later stages are skipped.
+     4	pipeline {
+     5	    agent any
+     6	
+     7	    tools {
+     8	        jdk 'jdk21'
+     9	    }
+    10	
+    11	    environment {
+    12	        STUDENT_NAME = 'Nooruzbek Toktobaev'
+    13	        IMAGE_NAME   = 'toktobaev-nooruzbek-student-api'
+    14	        IMAGE_TAG    = 'v1.1-toktobaev-nooruzbek'
+    15	    }
+    16	
+    17	    parameters {
+    18	        string(name: 'BRANCH', defaultValue: 'main', description: 'Git branch to build')
+    19	    }
+    20	
+    21	    // GitHub cannot reach a Jenkins on localhost with a webhook, so Jenkins polls GitHub every ~2 minutes
+    22	    triggers {
+    23	        pollSCM('H/2 * * * *')
+    24	    }
+    25	
+    26	    options {
+    27	        timestamps()
+    28	        buildDiscarder(logRotator(numToKeepStr: '20'))
+    29	        disableConcurrentBuilds()
+    30	    }
+    31	
+    32	    stages {
+    33	        stage('Checkout') {
+    34	            steps {
+    35	                checkout scm
+    36	                echo "Build by ${STUDENT_NAME}"
+    37	                sh 'git log -1 --format="Commit %h by %an: %s"'
+    38	            }
+    39	        }
+    40	
+    41	        stage('Build') {
+    42	            steps {
+    43	                echo "Compiling Student API of ${STUDENT_NAME} with Gradle"
+    44	                sh 'chmod +x gradlew'
+    45	                sh './gradlew clean assemble --no-daemon'
+    46	            }
+    47	        }
+    48	
+    49	        stage('Test') {
+    50	            steps {
+    51	                echo "Running automated tests for ${STUDENT_NAME}"
+    52	                sh './gradlew test --no-daemon'
+    53	            }
+    54	            post {
+    55	                always {
+    56	                    junit allowEmptyResults: false, testResults: 'build/test-results/test/*.xml'
+    57	                }
+    58	            }
+    59	        }
+    60	
+    61	        stage('Docker Build') {
+    62	            steps {
+    63	                echo "Building image ${IMAGE_NAME}:${IMAGE_TAG} for ${STUDENT_NAME}"
+    64	                sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
+    65	            }
+    66	        }
+    67	
+    68	        stage('Verify') {
+    69	            steps {
+    70	                sh 'docker image inspect ${IMAGE_NAME}:${IMAGE_TAG} --format "Image {{.RepoTags}} created {{.Created}} size {{.Size}} bytes"'
+    71	                sh 'docker images | grep ${IMAGE_NAME}'
+    72	                echo "Verify OK: image ${IMAGE_NAME}:${IMAGE_TAG} exists (student: ${STUDENT_NAME})"
+    73	            }
+    74	        }
+    75	    }
+    76	
+    77	    post {
+    78	        success {
+    79	            echo "SUCCESS: pipeline of ${STUDENT_NAME} finished, image ${IMAGE_NAME}:${IMAGE_TAG} is ready"
+    80	        }
+    81	        failure {
+    82	            echo "FAILURE: pipeline of ${STUDENT_NAME} failed — see the stage log above"
+    83	        }
+    84	    }
+    85	}
+

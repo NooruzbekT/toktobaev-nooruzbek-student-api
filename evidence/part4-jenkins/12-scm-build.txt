@@ -1,0 +1,44 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" "http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/6/api/json?tree=number,result,duration,actions%5Bcauses%5BshortDescription%5D,parameters%5Bname,value%5D,lastBuiltRevision%5BSHA1,branch%5Bname%5D%5D%5D" | jq '{number, result, duration, causes: [.actions[].causes? // empty | .[].shortDescription], parameters: [.actions[].parameters? // empty | .[] | {(.name): .value}], revision: ([.actions[].lastBuiltRevision? // empty] | first | {SHA1, branch: .branch[0].name})}'
+{
+  "number": 6,
+  "result": "SUCCESS",
+  "duration": 63566,
+  "causes": [
+    "Started by an SCM change"
+  ],
+  "parameters": [
+    {
+      "BRANCH": "main"
+    }
+  ],
+  "revision": {
+    "SHA1": "650920a0b3c6d5216c067fed9866c674eae04df8",
+    "branch": "refs/remotes/origin/main"
+  }
+}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/6/wfapi/describe | jq -r '"Build #\(.id): \(.status)", (.stages[] | "  \(.name)\t\(.status)\t\(.durationMillis) ms")' | column -t -s $'\t'
+Build #6: SUCCESS                     
+  Declarative: Checkout SCM  SUCCESS  1068 ms
+  Declarative: Tool Install  SUCCESS  108 ms
+  Checkout                   SUCCESS  1290 ms
+  Build                      SUCCESS  17861 ms
+  Test                       SUCCESS  36550 ms
+  Docker Build               SUCCESS  3447 ms
+  Verify                     SUCCESS  899 ms
+  Declarative: Post Actions  SUCCESS  101 ms
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/6/consoleText | grep -E 'Started by|Checking out Revision|Commit message|Build by|BUILD SUCCESSFUL|Verify OK|Finished:' | cut -c1-170
+Started by an SCM change
+Checking out Revision 650920a0b3c6d5216c067fed9866c674eae04df8 (refs/remotes/origin/main)
+Commit message: "docs: link midterm report from README — Toktobaev Nooruzbek"
+Checking out Revision 650920a0b3c6d5216c067fed9866c674eae04df8 (refs/remotes/origin/main)
+Commit message: "docs: link midterm report from README — Toktobaev Nooruzbek"
+[2026-10-29T15:38:17.024Z] Checking out Revision 650920a0b3c6d5216c067fed9866c674eae04df8 (refs/remotes/origin/main)
+[2026-10-29T15:38:17.038Z] Commit message: "docs: link midterm report from README — Toktobaev Nooruzbek"
+[2026-10-29T15:38:17.070Z] Build by Nooruzbek Toktobaev (branch main)
+[2026-10-29T15:38:35.050Z] BUILD SUCCESSFUL in 17s
+[2026-10-29T15:39:11.526Z] BUILD SUCCESSFUL in 35s
+[2026-10-29T15:39:16.378Z] Verify OK: image toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek exists (student: Nooruzbek Toktobaev)
+Finished: SUCCESS
+

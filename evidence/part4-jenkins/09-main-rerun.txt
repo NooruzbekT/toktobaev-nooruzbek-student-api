@@ -1,0 +1,30 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" "http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/4/api/json?tree=number,result,duration,actions%5Bcauses%5BshortDescription%5D,parameters%5Bname,value%5D,lastBuiltRevision%5BSHA1,branch%5Bname%5D%5D%5D" | jq '{number, result, duration, causes: [.actions[].causes? // empty | .[].shortDescription], parameters: [.actions[].parameters? // empty | .[] | {(.name): .value}], revision: ([.actions[].lastBuiltRevision? // empty] | first | {SHA1, branch: .branch[0].name})}'
+{
+  "number": 4,
+  "result": "SUCCESS",
+  "duration": 49681,
+  "causes": [
+    "Started by user Nooruzbek Toktobaev"
+  ],
+  "parameters": [
+    {
+      "BRANCH": "main"
+    }
+  ],
+  "revision": {
+    "SHA1": "69d2035b4631e847638c84514cc88c86a09aa1ce",
+    "branch": "refs/remotes/origin/main"
+  }
+}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/4/wfapi/describe | jq -r '"Build #\(.id): \(.status)", (.stages[] | "  \(.name)\t\(.status)\t\(.durationMillis) ms")' | column -t -s $'\t'
+Build #4: SUCCESS                     
+  Declarative: Checkout SCM  SUCCESS  864 ms
+  Declarative: Tool Install  SUCCESS  99 ms
+  Checkout                   SUCCESS  1324 ms
+  Build                      SUCCESS  16539 ms
+  Test                       SUCCESS  25874 ms
+  Docker Build               SUCCESS  2343 ms
+  Verify                     SUCCESS  1135 ms
+  Declarative: Post Actions  SUCCESS  90 ms
+

@@ -1,0 +1,55 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" "http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/1/api/json?tree=number,result,duration,actions%5Bcauses%5BshortDescription%5D,parameters%5Bname,value%5D%5D" | jq '{number, result, duration, causes: [.actions[].causes? // empty | .[].shortDescription], parameters: [.actions[].parameters? // empty | .[] | {(.name): .value}]}'
+{
+  "number": 1,
+  "result": "SUCCESS",
+  "duration": 196403,
+  "causes": [
+    "Started by user Nooruzbek Toktobaev"
+  ],
+  "parameters": [
+    {
+      "BRANCH": "main"
+    }
+  ]
+}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/1/wfapi/describe | jq -r '.stages[] | "\(.name)\t\(.status)\t\(.durationMillis) ms"' | column -t -s $'\t'
+Declarative: Checkout SCM  SUCCESS  3201 ms
+Declarative: Tool Install  SUCCESS  249 ms
+Checkout                   SUCCESS  2431 ms
+Build                      SUCCESS  99654 ms
+Test                       SUCCESS  69058 ms
+Docker Build               SUCCESS  3451 ms
+Verify                     SUCCESS  1224 ms
+Declarative: Post Actions  SUCCESS  127 ms
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -u "admin:$JP" http://localhost:8090/job/Toktobaev_Nooruzbek_Student_API/1/consoleText | grep -E 'Started by|Checking out Revision|git checkout|Build by|Commit |BUILD SUCCESSFUL|Test > |tests completed|naming to|Image \[|Verify OK|SUCCESS:|Finished:' | cut -c1-190
+Started by user Nooruzbek Toktobaev
+Checking out Revision 69d2035b4631e847638c84514cc88c86a09aa1ce (refs/remotes/origin/main)
+ > git checkout -f 69d2035b4631e847638c84514cc88c86a09aa1ce # timeout=10
+Commit message: "ci: add declarative Jenkins pipeline (Checkout, Build, Test, Docker Build, Verify) — Toktobaev Nooruzbek"
+Checking out Revision 69d2035b4631e847638c84514cc88c86a09aa1ce (refs/remotes/origin/main)
+ > git checkout -f 69d2035b4631e847638c84514cc88c86a09aa1ce # timeout=10
+Commit message: "ci: add declarative Jenkins pipeline (Checkout, Build, Test, Docker Build, Verify) — Toktobaev Nooruzbek"
+[2026-10-29T14:58:39.015Z] Checking out Revision 69d2035b4631e847638c84514cc88c86a09aa1ce (refs/remotes/origin/main)
+[2026-10-29T14:58:39.023Z]  > git checkout -f 69d2035b4631e847638c84514cc88c86a09aa1ce # timeout=10
+[2026-10-29T14:58:39.184Z] Commit message: "ci: add declarative Jenkins pipeline (Checkout, Build, Test, Docker Build, Verify) — Toktobaev Nooruzbek"
+[2026-10-29T14:58:39.296Z] Build by Nooruzbek Toktobaev
+[2026-10-29T14:58:39.612Z] + git log -1 --format=Commit %h by %an: %s
+[2026-10-29T14:58:39.612Z] Commit 69d2035 by Nooruzbek Toktobaev: ci: add declarative Jenkins pipeline (Checkout, Build, Test, Docker Build, Verify) — Toktobaev Nooruzbek
+[2026-10-29T15:00:19.256Z] BUILD SUCCESSFUL in 1m 38s
+[2026-10-29T15:01:25.801Z] StudentApiIntegrationTest > infoShowsAuthor() PASSED
+[2026-10-29T15:01:25.801Z] StudentApiIntegrationTest > fullCrudFlow() PASSED
+[2026-10-29T15:01:25.801Z] StudentSearchTest > blankLastNameReturnsAllStudents() PASSED
+[2026-10-29T15:01:25.801Z] StudentSearchTest > searchByLastNameIsCaseInsensitiveAndPartial() PASSED
+[2026-10-29T15:01:27.671Z] StudentControllerTest > updateNonexistentStudentReturns404() PASSED
+[2026-10-29T15:01:27.671Z] StudentControllerTest > getNonexistentStudentReturns404WithErrorBody() PASSED
+[2026-10-29T15:01:27.671Z] StudentControllerTest > createReturns201WithLocation() PASSED
+[2026-10-29T15:01:27.671Z] StudentControllerTest > createWithInvalidDataReturns400() PASSED
+[2026-10-29T15:01:27.922Z] BUILD SUCCESSFUL in 1m 7s
+[2026-10-29T15:01:31.868Z] #17 naming to docker.io/library/toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek done
+[2026-10-29T15:01:32.795Z] Image [toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek] created 2026-10-29T14:48:58.191923844Z size 124749027 bytes
+[2026-10-29T15:01:33.396Z] Verify OK: image toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek exists (student: Nooruzbek Toktobaev)
+[2026-10-29T15:01:33.576Z] SUCCESS: pipeline of Nooruzbek Toktobaev finished, image toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek is ready
+Finished: SUCCESS
+
