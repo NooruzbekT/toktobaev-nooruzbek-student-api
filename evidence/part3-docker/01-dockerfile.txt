@@ -1,0 +1,52 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ cat -n Dockerfile
+     1	# Student API — Nooruzbek Toktobaev
+     2	# Multi-stage build: stage 1 builds the JAR with Gradle (JDK), stage 2 runs it on a small JRE image.
+     3	
+     4	# ---------- Stage 1: build ----------
+     5	FROM eclipse-temurin:21-jdk AS build
+     6	WORKDIR /app
+     7	
+     8	# Gradle wrapper and build scripts first: this layer (and downloaded dependencies)
+     9	# is cached and reused while only the source code changes
+    10	COPY gradlew settings.gradle build.gradle gradle.properties ./
+    11	COPY gradle ./gradle
+    12	RUN chmod +x gradlew && ./gradlew dependencies --no-daemon -q > /dev/null
+    13	
+    14	COPY src ./src
+    15	# Tests are skipped here because Jenkins runs them in a separate Test stage before Docker Build
+    16	RUN ./gradlew clean bootJar -x test --no-daemon
+    17	
+    18	# ---------- Stage 2: runtime ----------
+    19	FROM eclipse-temurin:21-jre-alpine
+    20	
+    21	ARG APP_VERSION=1.0.0
+    22	LABEL org.opencontainers.image.title="toktobaev-nooruzbek-student-api" \
+    23	      org.opencontainers.image.description="Spring Boot CRUD Student API" \
+    24	      org.opencontainers.image.authors="Nooruzbek Toktobaev" \
+    25	      org.opencontainers.image.version="${APP_VERSION}" \
+    26	      student="Nooruzbek Toktobaev"
+    27	
+    28	WORKDIR /app
+    29	# Run the application as an unprivileged user, not root
+    30	RUN addgroup -S student && adduser -S -G student student
+    31	COPY --from=build /app/build/libs/app.jar /app/app.jar
+    32	USER student
+    33	
+    34	EXPOSE 8080
+    35	ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ cat .dockerignore
+.git
+.gradle
+build
+.idea
+*.iml
+.env
+evidence
+logs
+backups
+postman
+*.md
+Jenkinsfile
+docker-compose.yml
+

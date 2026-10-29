@@ -1,0 +1,18 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -si -X PUT http://localhost:8080/api/students/1 -H 'Content-Type: application/json' -d '{"firstName":"Nooruzbek","lastName":"Toktobaev","email":"nooruzbek.toktobaev@student.kg","groupName":"DevOps-2","age":22}'; echo
+HTTP/1.1 200 
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Thu, 29 Oct 2026 14:47:39 GMT
+
+{"id":1,"firstName":"Nooruzbek","lastName":"Toktobaev","email":"nooruzbek.toktobaev@student.kg","groupName":"DevOps-2","age":22}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s http://localhost:8080/api/students/1 | jq .
+{
+  "id": 1,
+  "firstName": "Nooruzbek",
+  "lastName": "Toktobaev",
+  "email": "nooruzbek.toktobaev@student.kg",
+  "groupName": "DevOps-2",
+  "age": 22
+}
+

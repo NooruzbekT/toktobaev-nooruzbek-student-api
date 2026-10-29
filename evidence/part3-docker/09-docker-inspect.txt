@@ -1,0 +1,55 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker inspect toktobaev-nooruzbek-app | jq ".[0] | {Name, Image: .Config.Image, Env: .Config.Env, Ports: .NetworkSettings.Ports, Networks: (.NetworkSettings.Networks | keys), RestartPolicy: .HostConfig.RestartPolicy, User: .Config.User}"
+{
+  "Name": "/toktobaev-nooruzbek-app",
+  "Image": "toktobaev-nooruzbek-student-api:v1.0-toktobaev-nooruzbek",
+  "Env": [
+    "SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/students_db",
+    "SPRING_DATASOURCE_USERNAME=student_user",
+    "SPRING_DATASOURCE_PASSWORD=********",
+    "PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "JAVA_HOME=/opt/java/openjdk",
+    "LANG=en_US.UTF-8",
+    "LANGUAGE=en_US:en",
+    "LC_ALL=en_US.UTF-8",
+    "JAVA_VERSION=jdk-21.0.12.1+1"
+  ],
+  "Ports": {
+    "8080/tcp": [
+      {
+        "HostIp": "0.0.0.0",
+        "HostPort": "8080"
+      },
+      {
+        "HostIp": "::",
+        "HostPort": "8080"
+      }
+    ]
+  },
+  "Networks": [
+    "toktobaev-nooruzbek-net"
+  ],
+  "RestartPolicy": {
+    "Name": "unless-stopped",
+    "MaximumRetryCount": 0
+  },
+  "User": "student"
+}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker inspect toktobaev-nooruzbek-postgres | jq ".[0] | {Name, Image: .Config.Image, Mounts: [.Mounts[] | {Type, Name, Destination}], Health: .State.Health.Status, Healthcheck: .Config.Healthcheck.Test}"
+{
+  "Name": "/toktobaev-nooruzbek-postgres",
+  "Image": "postgres:16-alpine",
+  "Mounts": [
+    {
+      "Type": "volume",
+      "Name": "toktobaev-nooruzbek-pgdata",
+      "Destination": "/var/lib/postgresql/data"
+    }
+  ],
+  "Health": "healthy",
+  "Healthcheck": [
+    "CMD-SHELL",
+    "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"
+  ]
+}
+

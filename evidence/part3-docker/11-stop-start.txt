@@ -1,0 +1,35 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker compose stop app
+ Container toktobaev-nooruzbek-app  Stopping
+ Container toktobaev-nooruzbek-app  Stopped
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker compose ps -a
+NAME                           IMAGE                                                      COMMAND                  SERVICE   CREATED          STATUS                                PORTS
+toktobaev-nooruzbek-app        toktobaev-nooruzbek-student-api:v1.0-toktobaev-nooruzbek   "java -jar /app/app.…"   app       17 seconds ago   Exited (143) Less than a second ago   
+toktobaev-nooruzbek-postgres   postgres:16-alpine                                         "docker-entrypoint.s…"   db        18 seconds ago   Up 16 seconds (healthy)               5432/tcp
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -o /dev/null -w "HTTP %{http_code}\n" http://localhost:8080/api/info || echo "connection refused — app is stopped"
+HTTP 000
+connection refused — app is stopped
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker compose start app
+ Container toktobaev-nooruzbek-postgres  Waiting
+ Container toktobaev-nooruzbek-postgres  Healthy
+ Container toktobaev-nooruzbek-app  Starting
+ Container toktobaev-nooruzbek-app  Started
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker compose ps && curl -s http://localhost:8080/api/info; echo
+NAME                           IMAGE                                                      COMMAND                  SERVICE   CREATED          STATUS                    PORTS
+toktobaev-nooruzbek-app        toktobaev-nooruzbek-student-api:v1.0-toktobaev-nooruzbek   "java -jar /app/app.…"   app       28 seconds ago   Up 10 seconds             0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+toktobaev-nooruzbek-postgres   postgres:16-alpine                                         "docker-entrypoint.s…"   db        29 seconds ago   Up 28 seconds (healthy)   5432/tcp
+{"app":"Student API","author":"Nooruzbek Toktobaev","version":"1.0.0","endpoints":"/api/students"}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker compose restart app
+ Container toktobaev-nooruzbek-app  Restarting
+ Container toktobaev-nooruzbek-app  Started
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker compose ps app && docker inspect -f "StartedAt={{.State.StartedAt}} RestartCount={{.RestartCount}}" toktobaev-nooruzbek-app && curl -s http://localhost:8080/api/info; echo
+NAME                      IMAGE                                                      COMMAND                  SERVICE   CREATED          STATUS          PORTS
+toktobaev-nooruzbek-app   toktobaev-nooruzbek-student-api:v1.0-toktobaev-nooruzbek   "java -jar /app/app.…"   app       39 seconds ago   Up 10 seconds   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+StartedAt=2026-10-29T14:47:28.151147346Z RestartCount=0
+{"app":"Student API","author":"Nooruzbek Toktobaev","version":"1.0.0","endpoints":"/api/students"}
+

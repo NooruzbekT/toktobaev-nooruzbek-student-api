@@ -1,0 +1,13 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -si -X DELETE http://localhost:8080/api/students/1
+HTTP/1.1 204 
+Date: Thu, 29 Oct 2026 14:47:39 GMT
+
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -si http://localhost:8080/api/students/1; echo
+HTTP/1.1 404 
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Thu, 29 Oct 2026 14:47:39 GMT
+
+{"timestamp":"2026-10-29T14:47:39.337963980Z","status":404,"error":"Not Found","message":"Student with id 1 not found","path":"/api/students/1"}
+

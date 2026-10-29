@@ -1,0 +1,38 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -si -X POST http://localhost:8080/api/students -H "Content-Type: application/json" -d '{"firstName":"Nooruzbek","lastName":"Toktobaev","email":"nooruzbek.toktobaev@student.kg","groupName":"DevOps-1","age":21}'; echo
+HTTP/1.1 201 
+Location: /api/students/1
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Thu, 29 Oct 2026 14:47:38 GMT
+
+{"id":1,"firstName":"Nooruzbek","lastName":"Toktobaev","email":"nooruzbek.toktobaev@student.kg","groupName":"DevOps-1","age":21}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -X POST http://localhost:8080/api/students -H "Content-Type: application/json" -d '{"firstName":"Aibek","lastName":"Toktogulov","email":"aibek.toktogulov@student.kg","groupName":"DevOps-1","age":20}' | jq .
+{
+  "id": 2,
+  "firstName": "Aibek",
+  "lastName": "Toktogulov",
+  "email": "aibek.toktogulov@student.kg",
+  "groupName": "DevOps-1",
+  "age": 20
+}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -X POST http://localhost:8080/api/students -H "Content-Type: application/json" -d '{"firstName":"Aizada","lastName":"Bekova","email":"aizada.bekova@student.kg","groupName":"DevOps-2","age":19}' | jq .
+{
+  "id": 3,
+  "firstName": "Aizada",
+  "lastName": "Bekova",
+  "email": "aizada.bekova@student.kg",
+  "groupName": "DevOps-2",
+  "age": 19
+}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -si -X POST http://localhost:8080/api/students -H "Content-Type: application/json" -d '{"firstName":"","lastName":"Toktobaev","email":"wrong-email","age":5}'; echo   # validation -> 400
+HTTP/1.1 400 
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Thu, 29 Oct 2026 14:47:39 GMT
+Connection: close
+
+{"timestamp":"2026-10-29T14:47:39.009064491Z","status":400,"error":"Bad Request","message":"Validation failed","path":"/api/students","fieldErrors":{"age":"must be greater than or equal to 14","email":"must be a well-formed email address","firstName":"must not be blank"}}
+

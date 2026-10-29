@@ -1,0 +1,24 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker compose logs app | grep -E "Starting StudentApiApplication|HikariPool-1 - (Added|Start completed)|Database version|PostgreSQL|Tomcat started|Started StudentApiApplication" | cut -c1-230
+toktobaev-nooruzbek-app  | 2026-10-29T14:47:06.731Z  INFO 1 --- [toktobaev-nooruzbek-student-api] [           main] k.t.n.studentapi.StudentApiApplication   : Starting StudentApiApplication v1.0.0 using Java 21.0.12.1 with PID 1 (
+toktobaev-nooruzbek-app  | 2026-10-29T14:47:09.789Z  INFO 1 --- [toktobaev-nooruzbek-student-api] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@304744
+toktobaev-nooruzbek-app  | 2026-10-29T14:47:09.791Z  INFO 1 --- [toktobaev-nooruzbek-student-api] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+toktobaev-nooruzbek-app  | 	Database version: 16.15
+toktobaev-nooruzbek-app  | 2026-10-29T14:47:12.856Z  INFO 1 --- [toktobaev-nooruzbek-student-api] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+toktobaev-nooruzbek-app  | 2026-10-29T14:47:12.881Z  INFO 1 --- [toktobaev-nooruzbek-student-api] [           main] k.t.n.studentapi.StudentApiApplication   : Started StudentApiApplication in 6.8 seconds (process running for 8.044
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker network inspect toktobaev-nooruzbek-net --format "{{range .Containers}}{{.Name}}  {{.IPv4Address}}{{println}}{{end}}"
+toktobaev-nooruzbek-postgres  172.26.0.2/16
+toktobaev-nooruzbek-app  172.26.0.3/16
+
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker exec toktobaev-nooruzbek-app getent hosts db
+172.26.0.2        db  db
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s http://localhost:8080/api/info | jq .
+{
+  "app": "Student API",
+  "author": "Nooruzbek Toktobaev",
+  "version": "1.0.0",
+  "endpoints": "/api/students"
+}
+

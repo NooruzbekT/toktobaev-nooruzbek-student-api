@@ -1,0 +1,30 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker compose up -d --build 2>&1 | grep -vE "^ *#|^#" | tail -20
+
+
+
+
+
+ toktobaev-nooruzbek-student-api:v1.0-toktobaev-nooruzbek  Built
+ Network toktobaev-nooruzbek-net  Creating
+ Network toktobaev-nooruzbek-net  Created
+ Volume "toktobaev-nooruzbek-pgdata"  Creating
+ Volume "toktobaev-nooruzbek-pgdata"  Created
+ Container toktobaev-nooruzbek-postgres  Creating
+ Container toktobaev-nooruzbek-postgres  Created
+ Container toktobaev-nooruzbek-app  Creating
+ Container toktobaev-nooruzbek-app  Created
+ Container toktobaev-nooruzbek-postgres  Starting
+ Container toktobaev-nooruzbek-postgres  Started
+ Container toktobaev-nooruzbek-postgres  Waiting
+ Container toktobaev-nooruzbek-postgres  Healthy
+ Container toktobaev-nooruzbek-app  Starting
+ Container toktobaev-nooruzbek-app  Started
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker compose ps
+NAME                           IMAGE                                                      COMMAND                  SERVICE   CREATED          STATUS                    PORTS
+toktobaev-nooruzbek-app        toktobaev-nooruzbek-student-api:v1.0-toktobaev-nooruzbek   "java -jar /app/app.…"   app       14 seconds ago   Up 8 seconds              0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+toktobaev-nooruzbek-postgres   postgres:16-alpine                                         "docker-entrypoint.s…"   db        15 seconds ago   Up 14 seconds (healthy)   5432/tcp
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker inspect --format "{{.Name}} health={{.State.Health.Status}}" toktobaev-nooruzbek-postgres
+/toktobaev-nooruzbek-postgres health=healthy
+

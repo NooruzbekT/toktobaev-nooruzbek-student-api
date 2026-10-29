@@ -1,0 +1,72 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ cat -n docker-compose.yml
+     1	# Student API — Nooruzbek Toktobaev
+     2	# Usage: cp .env.example .env  (set your own password)  &&  docker compose up -d --build
+     3	name: toktobaev-nooruzbek-student-api
+     4	
+     5	services:
+     6	  db:
+     7	    image: postgres:16-alpine
+     8	    container_name: toktobaev-nooruzbek-postgres
+     9	    environment:
+    10	      POSTGRES_DB: ${POSTGRES_DB}
+    11	      POSTGRES_USER: ${POSTGRES_USER}
+    12	      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    13	    volumes:
+    14	      - pgdata:/var/lib/postgresql/data
+    15	    healthcheck:
+    16	      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+    17	      interval: 5s
+    18	      timeout: 5s
+    19	      retries: 10
+    20	      start_period: 10s
+    21	    networks:
+    22	      - student-net
+    23	    restart: unless-stopped
+    24	
+    25	  app:
+    26	    build:
+    27	      context: .
+    28	      args:
+    29	        APP_VERSION: "1.0.0"
+    30	    image: toktobaev-nooruzbek-student-api:v1.0-toktobaev-nooruzbek
+    31	    container_name: toktobaev-nooruzbek-app
+    32	    environment:
+    33	      # "db" is the Compose service name — resolved by Docker DNS inside the network
+    34	      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${POSTGRES_DB}
+    35	      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+    36	      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+    37	    depends_on:
+    38	      db:
+    39	        condition: service_healthy
+    40	    ports:
+    41	      - "8080:8080"
+    42	    networks:
+    43	      - student-net
+    44	    restart: unless-stopped
+    45	
+    46	volumes:
+    47	  pgdata:
+    48	    name: toktobaev-nooruzbek-pgdata
+    49	
+    50	networks:
+    51	  student-net:
+    52	    name: toktobaev-nooruzbek-net
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ ls -la .env .env.example && cat .env && git check-ignore -v .env
+-rwxr-xr-x 1 nooke nooke 185 Oct 29 19:01 .env
+-rwxr-xr-x 1 nooke nooke 170 Oct 29 18:57 .env.example
+# Copy to .env and set your own values. .env is in .gitignore and must never be committed.
+POSTGRES_DB=students_db
+POSTGRES_USER=student_user
+POSTGRES_PASSWORD=********
+.gitignore:13:.env	.env
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker compose config --services && docker compose config --volumes && docker compose config | grep -A3 "^networks:"
+db
+app
+pgdata
+networks:
+  student-net:
+    name: toktobaev-nooruzbek-net
+volumes:
+

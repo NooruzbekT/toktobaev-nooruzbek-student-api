@@ -1,0 +1,98 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git diff
+diff --git a/Dockerfile b/Dockerfile
+index b6f008b..1d9c11d 100644
+--- a/Dockerfile
++++ b/Dockerfile
+@@ -18,7 +18,7 @@ RUN ./gradlew clean bootJar -x test --no-daemon
+ # ---------- Stage 2: runtime ----------
+ FROM eclipse-temurin:21-jre-alpine
+ 
+-ARG APP_VERSION=1.0.0
++ARG APP_VERSION=1.1.0
+ LABEL org.opencontainers.image.title="toktobaev-nooruzbek-student-api" \
+       org.opencontainers.image.description="Spring Boot CRUD Student API" \
+       org.opencontainers.image.authors="Nooruzbek Toktobaev" \
+diff --git a/build.gradle b/build.gradle
+index a342f2d..4227208 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -5,7 +5,7 @@ plugins {
+ }
+ 
+ group = 'kg.toktobaev.nooruzbek'
+-version = '1.0.0'
++version = '1.1.0'
+ description = 'Student CRUD API by Nooruzbek Toktobaev'
+ 
+ java {
+diff --git a/docker-compose.yml b/docker-compose.yml
+index 1fc5946..556dfba 100644
+--- a/docker-compose.yml
++++ b/docker-compose.yml
+@@ -26,8 +26,8 @@ services:
+     build:
+       context: .
+       args:
+-        APP_VERSION: "1.0.0"
+-    image: toktobaev-nooruzbek-student-api:v1.0-toktobaev-nooruzbek
++        APP_VERSION: "1.1.0"
++    image: toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek
+     container_name: toktobaev-nooruzbek-app
+     environment:
+       # "db" is the Compose service name — resolved by Docker DNS inside the network
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s http://localhost:8080/api/info | jq .   # before rebuild
+{
+  "app": "Student API",
+  "author": "Nooruzbek Toktobaev",
+  "version": "1.0.0",
+  "endpoints": "/api/students"
+}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker compose up -d --build 2>&1 | grep -vE "^ *#|^#" | tail -12
+
+
+
+
+ toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek  Built
+ Container toktobaev-nooruzbek-postgres  Running
+ Container toktobaev-nooruzbek-app  Recreate
+ Container toktobaev-nooruzbek-app  Recreated
+ Container toktobaev-nooruzbek-postgres  Waiting
+ Container toktobaev-nooruzbek-postgres  Healthy
+ Container toktobaev-nooruzbek-app  Starting
+ Container toktobaev-nooruzbek-app  Started
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker images toktobaev-nooruzbek-student-api
+REPOSITORY                        TAG                        IMAGE ID       CREATED          SIZE
+toktobaev-nooruzbek-student-api   v1.1-toktobaev-nooruzbek   f0ba408ab42f   19 seconds ago   393MB
+toktobaev-nooruzbek-student-api   v1.0-toktobaev-nooruzbek   72a9776244f8   2 minutes ago    393MB
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker compose ps && docker inspect -f "{{.Config.Image}}  version label={{index .Config.Labels \"org.opencontainers.image.version\"}}" toktobaev-nooruzbek-app
+NAME                           IMAGE                                                      COMMAND                  SERVICE   CREATED          STATUS                   PORTS
+toktobaev-nooruzbek-app        toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek   "java -jar /app/app.…"   app       16 seconds ago   Up 14 seconds            0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+toktobaev-nooruzbek-postgres   postgres:16-alpine                                         "docker-entrypoint.s…"   db        2 minutes ago    Up 2 minutes (healthy)   5432/tcp
+toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek  version label=1.1.0
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s http://localhost:8080/api/info | jq .   # after rebuild
+{
+  "app": "Student API",
+  "author": "Nooruzbek Toktobaev",
+  "version": "1.1.0",
+  "endpoints": "/api/students"
+}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s http://localhost:8080/api/students | jq "[.[] | {id, firstName, lastName}]"   # data survived container recreation
+[
+  {
+    "id": 2,
+    "firstName": "Aibek",
+    "lastName": "Toktogulov"
+  },
+  {
+    "id": 3,
+    "firstName": "Aizada",
+    "lastName": "Bekova"
+  }
+]
+

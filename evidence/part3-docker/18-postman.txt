@@ -1,0 +1,13 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ jq -r ".info.name, (.item[] | \"\(.request.method)\t\(.request.url.raw)\t\(.name)\")" postman/Toktobaev_Nooruzbek_Student_API.postman_collection.json
+Toktobaev Nooruzbek — Student API
+GET	{{baseUrl}}/api/info	Info (author and version)
+POST	{{baseUrl}}/api/students	Create student — Nooruzbek Toktobaev
+POST	{{baseUrl}}/api/students	Create student — Aibek Toktogulov
+GET	{{baseUrl}}/api/students	Get all students
+GET	{{baseUrl}}/api/students/{{studentId}}	Get student by id
+GET	{{baseUrl}}/api/students?lastName=tokto	Search by last name
+PUT	{{baseUrl}}/api/students/{{studentId}}	Update student
+DELETE	{{baseUrl}}/api/students/{{studentId}}	Delete student
+GET	{{baseUrl}}/api/students/{{studentId}}	Get deleted student (404)
+GET	{{baseUrl}}/api/students/9999	Get nonexistent student 9999 (404)
+

@@ -1,0 +1,52 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker images toktobaev-nooruzbek-student-api
+REPOSITORY                        TAG                        IMAGE ID       CREATED         SIZE
+toktobaev-nooruzbek-student-api   v1.0-toktobaev-nooruzbek   f5da424ff7d8   4 seconds ago   393MB
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker image inspect toktobaev-nooruzbek-student-api:v1.0-toktobaev-nooruzbek --format "Id:      {{.Id}}
+Created: {{.Created}}
+Size:    {{.Size}} bytes
+Arch/OS: {{.Architecture}}/{{.Os}}
+User:    {{.Config.User}}
+Workdir: {{.Config.WorkingDir}}
+Expose:  {{json .Config.ExposedPorts}}
+Entry:   {{json .Config.Entrypoint}}"
+Id:      sha256:f5da424ff7d8f491d8ff28bb762d2af344afcf3a64d4c13653acf99ee6819c77
+Created: 2026-10-29T14:46:40.668545461Z
+Size:    124749025 bytes
+Arch/OS: amd64/linux
+User:    student
+Workdir: /app
+Expose:  {"8080/tcp":{}}
+Entry:   ["java","-jar","/app/app.jar"]
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker image inspect toktobaev-nooruzbek-student-api:v1.0-toktobaev-nooruzbek | jq ".[0].Config.Labels"
+{
+  "org.opencontainers.image.authors": "Nooruzbek Toktobaev",
+  "org.opencontainers.image.description": "Spring Boot CRUD Student API",
+  "org.opencontainers.image.title": "toktobaev-nooruzbek-student-api",
+  "org.opencontainers.image.version": "1.0.0",
+  "student": "Nooruzbek Toktobaev"
+}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker history toktobaev-nooruzbek-student-api:v1.0-toktobaev-nooruzbek --format "table {{.CreatedSince}}\t{{.Size}}\t{{.CreatedBy}}" | cut -c1-150
+CREATED              SIZE      CREATED BY
+4 seconds ago        0B        ENTRYPOINT ["java" "-jar" "/app/app.jar"]
+4 seconds ago        0B        EXPOSE &{[{{34 0} {34 0}}] 0xc0014397c0}
+4 seconds ago        0B        USER student
+4 seconds ago        56.8MB    COPY /app/build/libs/app.jar /app/app.jar # …
+About a minute ago   41kB      RUN |1 APP_VERSION=1.0.0 /bin/sh -c addgroup…
+About a minute ago   8.19kB    WORKDIR /app
+About a minute ago   0B        LABEL org.opencontainers.image.title=toktoba…
+About a minute ago   0B        ARG APP_VERSION=1.0.0
+7 days ago           0B        ENTRYPOINT ["/__cacert_entrypoint.sh"]
+7 days ago           12.3kB    COPY --chmod=755 entrypoint.sh /__cacert_ent…
+7 days ago           12.3kB    RUN /bin/sh -c set -eux;     echo "Verifying…
+7 days ago           165MB     RUN /bin/sh -c set -eux;     ARCH="$(apk --p…
+7 days ago           0B        ENV JAVA_VERSION=jdk-21.0.12.1+1
+7 days ago           37.9MB    RUN /bin/sh -c set -eux;     apk add --no-ca…
+7 days ago           0B        ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_AL…
+7 days ago           0B        ENV PATH=/opt/java/openjdk/bin:/usr/local/sb…
+7 days ago           0B        ENV JAVA_HOME=/opt/java/openjdk
+7 days ago           0B        CMD ["/bin/sh"]
+7 days ago           9.08MB    ADD alpine-minirootfs-3.24.3-x86_64.tar.gz /…
+

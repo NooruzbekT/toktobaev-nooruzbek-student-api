@@ -1,0 +1,12 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker ps --filter "name=toktobaev-nooruzbek" --format "table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"
+CONTAINER ID   NAMES                          IMAGE                                                      STATUS                    PORTS
+d2d19d57d841   toktobaev-nooruzbek-app        toktobaev-nooruzbek-student-api:v1.0-toktobaev-nooruzbek   Up 8 seconds              0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+50c6f18de438   toktobaev-nooruzbek-postgres   postgres:16-alpine                                         Up 14 seconds (healthy)   5432/tcp
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker ps
+CONTAINER ID   IMAGE                                                      COMMAND                  CREATED          STATUS                    PORTS                                         NAMES
+d2d19d57d841   toktobaev-nooruzbek-student-api:v1.0-toktobaev-nooruzbek   "java -jar /app/app.…"   15 seconds ago   Up 8 seconds              0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp   toktobaev-nooruzbek-app
+50c6f18de438   postgres:16-alpine                                         "docker-entrypoint.s…"   16 seconds ago   Up 14 seconds (healthy)   5432/tcp                                      toktobaev-nooruzbek-postgres
+b92e9a916c55   norm-control-backend                                       "uvicorn app.main:ap…"   13 days ago      Up 2 minutes              127.0.0.1:8000->8000/tcp                      norm-control-backend-1
+ad99427f101b   postgres:18-alpine                                         "docker-entrypoint.s…"   4 weeks ago      Up 2 minutes (healthy)    127.0.0.1:5434->5432/tcp                      norm-control-db-1
+

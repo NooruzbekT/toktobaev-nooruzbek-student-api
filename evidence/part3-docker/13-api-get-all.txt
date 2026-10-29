@@ -1,0 +1,43 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -w "\nHTTP %{http_code}\n" http://localhost:8080/api/students | head -1 | jq .
+[
+  {
+    "id": 1,
+    "firstName": "Nooruzbek",
+    "lastName": "Toktobaev",
+    "email": "nooruzbek.toktobaev@student.kg",
+    "groupName": "DevOps-1",
+    "age": 21
+  },
+  {
+    "id": 2,
+    "firstName": "Aibek",
+    "lastName": "Toktogulov",
+    "email": "aibek.toktogulov@student.kg",
+    "groupName": "DevOps-1",
+    "age": 20
+  },
+  {
+    "id": 3,
+    "firstName": "Aizada",
+    "lastName": "Bekova",
+    "email": "aizada.bekova@student.kg",
+    "groupName": "DevOps-2",
+    "age": 19
+  }
+]
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -o /dev/null -w "HTTP %{http_code}\n" http://localhost:8080/api/students; curl -s "http://localhost:8080/api/students?lastName=tokto" | jq "[.[] | {id, firstName, lastName}]"
+HTTP 200
+[
+  {
+    "id": 1,
+    "firstName": "Nooruzbek",
+    "lastName": "Toktobaev"
+  },
+  {
+    "id": 2,
+    "firstName": "Aibek",
+    "lastName": "Toktogulov"
+  }
+]
+

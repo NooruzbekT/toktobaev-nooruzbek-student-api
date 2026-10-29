@@ -1,0 +1,89 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s -X POST http://localhost:8080/api/students -H "Content-Type: application/json" -d '{"firstName":"Nooruzbek","lastName":"Toktobaev","email":"nooruzbek.persist@student.kg","groupName":"DevOps-1","age":21}' | jq .
+{
+  "id": 4,
+  "firstName": "Nooruzbek",
+  "lastName": "Toktobaev",
+  "email": "nooruzbek.persist@student.kg",
+  "groupName": "DevOps-1",
+  "age": 21
+}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker exec toktobaev-nooruzbek-postgres sh -c 'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -c "SELECT id, first_name, last_name, email FROM students ORDER BY id"'
+ id | first_name | last_name  |            email             
+----+------------+------------+------------------------------
+  2 | Aibek      | Toktogulov | aibek.toktogulov@student.kg
+  3 | Aizada     | Bekova     | aizada.bekova@student.kg
+  4 | Nooruzbek  | Toktobaev  | nooruzbek.persist@student.kg
+(3 rows)
+
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker compose down
+ Container toktobaev-nooruzbek-app  Stopping
+ Container toktobaev-nooruzbek-app  Stopped
+ Container toktobaev-nooruzbek-app  Removing
+ Container toktobaev-nooruzbek-app  Removed
+ Container toktobaev-nooruzbek-postgres  Stopping
+ Container toktobaev-nooruzbek-postgres  Stopped
+ Container toktobaev-nooruzbek-postgres  Removing
+ Container toktobaev-nooruzbek-postgres  Removed
+ Network toktobaev-nooruzbek-net  Removing
+ Network toktobaev-nooruzbek-net  Removed
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker ps -a --filter name=toktobaev-nooruzbek; docker volume ls --filter name=toktobaev-nooruzbek
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+DRIVER    VOLUME NAME
+local     toktobaev-nooruzbek-pgdata
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker compose up -d 2>&1 | tail -6
+ Container toktobaev-nooruzbek-postgres  Starting
+ Container toktobaev-nooruzbek-postgres  Started
+ Container toktobaev-nooruzbek-postgres  Waiting
+ Container toktobaev-nooruzbek-postgres  Healthy
+ Container toktobaev-nooruzbek-app  Starting
+ Container toktobaev-nooruzbek-app  Started
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker compose ps
+NAME                           IMAGE                                                      COMMAND                  SERVICE   CREATED          STATUS                    PORTS
+toktobaev-nooruzbek-app        toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek   "java -jar /app/app.…"   app       21 seconds ago   Up 14 seconds             0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+toktobaev-nooruzbek-postgres   postgres:16-alpine                                         "docker-entrypoint.s…"   db        21 seconds ago   Up 20 seconds (healthy)   5432/tcp
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ curl -s http://localhost:8080/api/students | jq "[.[] | {id, firstName, lastName, email}]"
+[
+  {
+    "id": 2,
+    "firstName": "Aibek",
+    "lastName": "Toktogulov",
+    "email": "aibek.toktogulov@student.kg"
+  },
+  {
+    "id": 3,
+    "firstName": "Aizada",
+    "lastName": "Bekova",
+    "email": "aizada.bekova@student.kg"
+  },
+  {
+    "id": 4,
+    "firstName": "Nooruzbek",
+    "lastName": "Toktobaev",
+    "email": "nooruzbek.persist@student.kg"
+  }
+]
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ docker volume inspect toktobaev-nooruzbek-pgdata
+[
+    {
+        "CreatedAt": "2026-10-29T14:46:58Z",
+        "Driver": "local",
+        "Labels": {
+            "com.docker.compose.config-hash": "0c51bcd98af6fb60de6e9c2465c558224df5feea3aca30bdf3d94c8a285f5954",
+            "com.docker.compose.project": "toktobaev-nooruzbek-student-api",
+            "com.docker.compose.version": "2.39.2",
+            "com.docker.compose.volume": "pgdata"
+        },
+        "Mountpoint": "/var/lib/docker/volumes/toktobaev-nooruzbek-pgdata/_data",
+        "Name": "toktobaev-nooruzbek-pgdata",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+
