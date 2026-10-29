@@ -2,7 +2,7 @@
 
 **Author:** Nooruzbek Toktobaev
 
-**Description:** Spring Boot CRUD REST API for managing students — DevOps midterm project.
+**Description:** Spring Boot CRUD REST API for managing students (create, read, update, delete, search by last name). Documentation by Nooruzbek Toktobaev.
 
 ## Stack
 
