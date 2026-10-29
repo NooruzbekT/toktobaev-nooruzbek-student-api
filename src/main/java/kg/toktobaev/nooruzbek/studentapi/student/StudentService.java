@@ -19,6 +19,13 @@ public class StudentService {
         return repository.findAll();
     }
 
+    /**
+     * Case-insensitive partial search by last name, e.g. "tokto" finds "Toktobaev".
+     */
+    public List<Student> searchByLastName(String lastName) {
+        return repository.findByLastNameContainingIgnoreCaseOrderByLastNameAscFirstNameAsc(lastName.trim());
+    }
+
     public Student findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
     }
