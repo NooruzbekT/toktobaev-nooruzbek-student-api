@@ -18,7 +18,7 @@ RUN ./gradlew clean bootJar -x test --no-daemon
 # ---------- Stage 2: runtime ----------
 FROM eclipse-temurin:21-jre-alpine
 
-ARG APP_VERSION=1.0.0
+ARG APP_VERSION=1.1.0
 LABEL org.opencontainers.image.title="toktobaev-nooruzbek-student-api" \
       org.opencontainers.image.description="Spring Boot CRUD Student API" \
       org.opencontainers.image.authors="Nooruzbek Toktobaev" \

@@ -26,8 +26,8 @@ services:
     build:
       context: .
       args:
-        APP_VERSION: "1.0.0"
-    image: toktobaev-nooruzbek-student-api:v1.0-toktobaev-nooruzbek
+        APP_VERSION: "1.1.0"
+    image: toktobaev-nooruzbek-student-api:v1.1-toktobaev-nooruzbek
     container_name: toktobaev-nooruzbek-app
     environment:
       # "db" is the Compose service name — resolved by Docker DNS inside the network
