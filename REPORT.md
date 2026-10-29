@@ -148,6 +148,8 @@ Jenkins работает локально в Docker и настроен полн
 | #4 | `main` | ✅ SUCCESS | повторный запуск на main |
 | #5 | `main` | ✅ SUCCESS | после исправления Checkout для polling (см. 4.4) |
 | #6 | `main` | ✅ SUCCESS | **Started by an SCM change** — автоматический запуск |
+| #7 | `main` | ✅ SUCCESS | Started by an SCM change — коммит с отчётом |
+| #8 | `main` | ✅ SUCCESS | Started by an SCM change — коммит с новыми записями лога |
 
 [🖼 05-build-main-success](evidence/part4-jenkins/05-build-main-success.png) [🖼 06-failure-branch](evidence/part4-jenkins/06-failure-branch.png) [🖼 07-build-failure (1/2)](evidence/part4-jenkins/07-build-failure-1.png) [🖼 07-build-failure (2/2)](evidence/part4-jenkins/07-build-failure-2.png) [🖼 08-fix-and-rerun (1/2)](evidence/part4-jenkins/08-fix-and-rerun-1.png) [🖼 08-fix-and-rerun (2/2)](evidence/part4-jenkins/08-fix-and-rerun-2.png) [🖼 09-main-rerun](evidence/part4-jenkins/09-main-rerun.png)
 
