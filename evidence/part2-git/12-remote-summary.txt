@@ -1,0 +1,62 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git remote -v
+origin	https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git (fetch)
+origin	https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git (push)
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git branch -a -vv
+  feature/toktobaev-nooruzbek-crud                         0fb4955 [origin/feature/toktobaev-nooruzbek-crud] docs: describe CRUD search change by Toktobaev Nooruzbek
+  feature/toktobaev-nooruzbek-documentation                721aaaf [origin/feature/toktobaev-nooruzbek-documentation] docs: rewrite README description on documentation branch — Toktobaev Nooruzbek
+* main                                                     f9b5bec [origin/main] chore: refresh README backup after conflict resolution — Toktobaev Nooruzbek
+  remotes/origin/feature/toktobaev-nooruzbek-crud          0fb4955 docs: describe CRUD search change by Toktobaev Nooruzbek
+  remotes/origin/feature/toktobaev-nooruzbek-documentation 721aaaf docs: rewrite README description on documentation branch — Toktobaev Nooruzbek
+  remotes/origin/main                                      f9b5bec chore: refresh README backup after conflict resolution — Toktobaev Nooruzbek
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git tag -n
+v1.0-toktobaev-nooruzbek Version 1.0 — Student API by Nooruzbek Toktobaev
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git show v1.0-toktobaev-nooruzbek --stat | head -12
+tag v1.0-toktobaev-nooruzbek
+Tagger: Nooruzbek Toktobaev <nookentoktobaev@gmail.com>
+Date:   Thu Oct 29 19:10:20 2026 +0500
+
+Version 1.0 — Student API by Nooruzbek Toktobaev
+
+commit f9b5bec4adfa0b2392b76321df01d3136b0002ab
+Author: Nooruzbek Toktobaev <nookentoktobaev@gmail.com>
+Date:   Thu Oct 29 19:02:29 2026 +0500
+
+    chore: refresh README backup after conflict resolution — Toktobaev Nooruzbek
+
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git log --oneline --graph --all --decorate
+* f9b5bec (HEAD -> main, tag: v1.0-toktobaev-nooruzbek, origin/main) chore: refresh README backup after conflict resolution — Toktobaev Nooruzbek
+*   dbf4abf Resolve README merge conflict — Toktobaev Nooruzbek
+|\  
+| * 721aaaf (origin/feature/toktobaev-nooruzbek-documentation, feature/toktobaev-nooruzbek-documentation) docs: rewrite README description on documentation branch — Toktobaev Nooruzbek
+* | 6fa0ff4 docs: update README description on main — Toktobaev Nooruzbek
+|/  
+*   c392089 Merge branch feature/toktobaev-nooruzbek-crud: student search by Toktobaev Nooruzbek
+|\  
+| * 0fb4955 (origin/feature/toktobaev-nooruzbek-crud, feature/toktobaev-nooruzbek-crud) docs: describe CRUD search change by Toktobaev Nooruzbek
+| * 28f7762 test(crud): cover last name search with integration test — Toktobaev Nooruzbek
+| * 02abdbf feat(crud): add search of students by last name — Toktobaev Nooruzbek
+|/  
+* 29b1864 Initial commit: Toktobaev Nooruzbek Student API
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ gh repo view --json name,url,visibility,defaultBranchRef,description | jq .
+{
+  "defaultBranchRef": {
+    "name": "main"
+  },
+  "description": "Spring Boot CRUD Student API — DevOps midterm of Nooruzbek Toktobaev",
+  "name": "toktobaev-nooruzbek-student-api",
+  "url": "https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api",
+  "visibility": "PUBLIC"
+}
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git ls-remote --heads --tags origin
+0fb49552943b32be4303e3cf60e87297f2a1514c	refs/heads/feature/toktobaev-nooruzbek-crud
+721aaaf9b987ed647c0c1f2bd185dea4ec822d16	refs/heads/feature/toktobaev-nooruzbek-documentation
+f9b5bec4adfa0b2392b76321df01d3136b0002ab	refs/heads/main
+5a9a953d10b2201e7530fbcb4c0fea0e39e58534	refs/tags/v1.0-toktobaev-nooruzbek
+f9b5bec4adfa0b2392b76321df01d3136b0002ab	refs/tags/v1.0-toktobaev-nooruzbek^{}
+

@@ -1,0 +1,21 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git switch main && git merge --no-ff feature/toktobaev-nooruzbek-crud -m "Merge branch feature/toktobaev-nooruzbek-crud: student search by Toktobaev Nooruzbek"
+Switched to branch 'main'
+M	evidence/part2-git/03-first-commit.txt
+Merge made by the 'ort' strategy.
+ README.md                                                                      | 10 ++++++++++
+ src/main/java/kg/toktobaev/nooruzbek/studentapi/student/StudentController.java | 11 +++++++++--
+ src/main/java/kg/toktobaev/nooruzbek/studentapi/student/StudentRepository.java |  4 ++++
+ src/main/java/kg/toktobaev/nooruzbek/studentapi/student/StudentService.java    |  7 +++++++
+ src/test/java/kg/toktobaev/nooruzbek/studentapi/StudentSearchTest.java         | 60 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 90 insertions(+), 2 deletions(-)
+ create mode 100755 src/test/java/kg/toktobaev/nooruzbek/studentapi/StudentSearchTest.java
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git log --oneline --graph --decorate -8
+*   c392089 (HEAD -> main) Merge branch feature/toktobaev-nooruzbek-crud: student search by Toktobaev Nooruzbek
+|\  
+| * 0fb4955 (feature/toktobaev-nooruzbek-crud) docs: describe CRUD search change by Toktobaev Nooruzbek
+| * 28f7762 test(crud): cover last name search with integration test — Toktobaev Nooruzbek
+| * 02abdbf feat(crud): add search of students by last name — Toktobaev Nooruzbek
+|/  
+* 29b1864 Initial commit: Toktobaev Nooruzbek Student API
+

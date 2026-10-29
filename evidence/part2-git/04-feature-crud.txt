@@ -1,0 +1,91 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git switch -c feature/toktobaev-nooruzbek-crud && git branch
+Switched to a new branch 'feature/toktobaev-nooruzbek-crud'
+* feature/toktobaev-nooruzbek-crud
+  main
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git diff --stat && git diff src/main/java/kg/toktobaev/nooruzbek/studentapi/student/StudentController.java
+ evidence/part2-git/03-first-commit.txt                                         | 61 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/main/java/kg/toktobaev/nooruzbek/studentapi/student/StudentController.java | 11 +++++++++--
+ src/main/java/kg/toktobaev/nooruzbek/studentapi/student/StudentRepository.java |  4 ++++
+ src/main/java/kg/toktobaev/nooruzbek/studentapi/student/StudentService.java    |  7 +++++++
+ 4 files changed, 81 insertions(+), 2 deletions(-)
+diff --git a/src/main/java/kg/toktobaev/nooruzbek/studentapi/student/StudentController.java b/src/main/java/kg/toktobaev/nooruzbek/studentapi/student/StudentController.java
+index 499f180..ad83550 100755
+--- a/src/main/java/kg/toktobaev/nooruzbek/studentapi/student/StudentController.java
++++ b/src/main/java/kg/toktobaev/nooruzbek/studentapi/student/StudentController.java
+@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
+ import org.springframework.web.bind.annotation.PutMapping;
+ import org.springframework.web.bind.annotation.RequestBody;
+ import org.springframework.web.bind.annotation.RequestMapping;
++import org.springframework.web.bind.annotation.RequestParam;
+ import org.springframework.web.bind.annotation.RestController;
+ 
+ @RestController
+@@ -25,9 +26,15 @@ public class StudentController {
+         this.service = service;
+     }
+ 
++    /**
++     * GET /api/students — all students; GET /api/students?lastName=tok — search by last name.
++     */
+     @GetMapping
+-    public List<Student> getAll() {
+-        return service.findAll();
++    public List<Student> getAll(@RequestParam(required = false) String lastName) {
++        if (lastName == null || lastName.isBlank()) {
++            return service.findAll();
++        }
++        return service.searchByLastName(lastName);
+     }
+ 
+     @GetMapping("/{id}")
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git add src/main/java/kg/toktobaev/nooruzbek/studentapi/student && git commit -q -m 'feat(crud): add search of students by last name — Toktobaev Nooruzbek' && git log --oneline -1
+02abdbf feat(crud): add search of students by last name — Toktobaev Nooruzbek
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ ./gradlew test --console=plain 2>&1 | grep -E "Test > |BUILD"
+StudentApiIntegrationTest > infoShowsAuthor() PASSED
+StudentApiIntegrationTest > fullCrudFlow() PASSED
+StudentSearchTest > blankLastNameReturnsAllStudents() PASSED
+StudentSearchTest > searchByLastNameIsCaseInsensitiveAndPartial() PASSED
+StudentControllerTest > updateNonexistentStudentReturns404() PASSED
+StudentControllerTest > getNonexistentStudentReturns404WithErrorBody() PASSED
+StudentControllerTest > createReturns201WithLocation() PASSED
+StudentControllerTest > createWithInvalidDataReturns400() PASSED
+BUILD SUCCESSFUL in 28s
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git add src/test/java/kg/toktobaev/nooruzbek/studentapi/StudentSearchTest.java && git commit -q -m 'test(crud): cover last name search with integration test — Toktobaev Nooruzbek' && git log --oneline -1
+28f7762 test(crud): cover last name search with integration test — Toktobaev Nooruzbek
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git diff README.md
+diff --git a/README.md b/README.md
+index 18669f0..2f144bb 100644
+--- a/README.md
++++ b/README.md
+@@ -32,6 +32,7 @@ toktobaev-nooruzbek-student-api/
+ |--------|----------------------|--------------------------|
+ | GET    | `/api/info`          | App name, author, version|
+ | GET    | `/api/students`      | List all students        |
++| GET    | `/api/students?lastName=tok` | Search by last name (case-insensitive) |
+ | GET    | `/api/students/{id}` | Get student by id        |
+ | POST   | `/api/students`      | Create student           |
+ | PUT    | `/api/students/{id}` | Update student           |
+@@ -44,3 +45,12 @@ Unknown id → `404 Not Found` with a JSON error body. Invalid data → `400 Bad
+ ```bash
+ ./gradlew clean build     # compile + run tests (H2, no PostgreSQL needed)
+ ```
++
++## Changes by Nooruzbek Toktobaev
++
++### feature/toktobaev-nooruzbek-crud — search students by last name
++
++- `GET /api/students?lastName=<text>` returns students whose last name contains `<text>`
++  (case-insensitive, partial match), sorted by last name and first name.
++- An empty or blank `lastName` returns the full list, so the old behaviour is unchanged.
++- Covered by the integration test `StudentSearchTest` (runs on H2, no PostgreSQL needed).
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git add README.md && git commit -q -m 'docs: describe CRUD search change by Toktobaev Nooruzbek' && git log --oneline main..HEAD
+0fb4955 docs: describe CRUD search change by Toktobaev Nooruzbek
+28f7762 test(crud): cover last name search with integration test — Toktobaev Nooruzbek
+02abdbf feat(crud): add search of students by last name — Toktobaev Nooruzbek
+

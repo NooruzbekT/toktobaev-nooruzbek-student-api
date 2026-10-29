@@ -1,0 +1,176 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git switch -c feature/toktobaev-nooruzbek-documentation && grep -n "^\*\*Description:\*\*" README.md
+Switched to a new branch 'feature/toktobaev-nooruzbek-documentation'
+5:**Description:** Spring Boot CRUD REST API for managing students — DevOps midterm project.
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ sed -i 's|^\*\*Description:\*\*.*|**Description:** Spring Boot CRUD REST API for managing students (create, read, update, delete, search by last name). Documentation by Nooruzbek Toktobaev.|' README.md && git diff
+diff --git a/README.md b/README.md
+index 2f144bb..c2ee109 100644
+--- a/README.md
++++ b/README.md
+@@ -2,7 +2,7 @@
+ 
+ **Author:** Nooruzbek Toktobaev
+ 
+-**Description:** Spring Boot CRUD REST API for managing students — DevOps midterm project.
++**Description:** Spring Boot CRUD REST API for managing students (create, read, update, delete, search by last name). Documentation by Nooruzbek Toktobaev.
+ 
+ ## Stack
+ 
+diff --git a/evidence/part2-git/03-first-commit.txt b/evidence/part2-git/03-first-commit.txt
+index e69de29..7b50b69 100644
+--- a/evidence/part2-git/03-first-commit.txt
++++ b/evidence/part2-git/03-first-commit.txt
+@@ -0,0 +1,61 @@
++nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git add . && git update-index --add --chmod=+x gradlew scripts/Toktobaev_Nooruzbek_system_report.sh evidence/run.sh evidence/render.py && git status --short | head -40
++A  .env.example
++A  .gitattributes
++A  .gitignore
++A  Dockerfile
++A  Jenkinsfile
++A  README.md
++A  backups/README_Toktobaev_Nooruzbek_backup.md
++A  build.gradle
++A  docker-compose.yml
++A  evidence/part1-linux/01-create-structure.png
++A  evidence/part1-linux/01-create-structure.txt
++A  evidence/part1-linux/02-tree.png
++A  evidence/part1-linux/02-tree.txt
++A  evidence/part1-linux/03-verify-files.png
++A  evidence/part1-linux/03-verify-files.txt
++A  evidence/part1-linux/04-app-sources.png
++A  evidence/part1-linux/04-app-sources.txt
++A  evidence/part1-linux/05-script-source-1.png
++A  evidence/part1-linux/05-script-source-2.png
++A  evidence/part1-linux/05-script-source.txt
++A  evidence/part1-linux/06-script-run-1.png
++A  evidence/part1-linux/06-script-run-1.txt
++A  evidence/part1-linux/07-permissions.png
++A  evidence/part1-linux/07-permissions.txt
++A  evidence/part1-linux/08-script-run-2.png
++A  evidence/part1-linux/08-script-run-2.txt
++A  evidence/part1-linux/09-readme.png
++A  evidence/part1-linux/09-readme.txt
++A  evidence/part1-linux/10-backup.png
++A  evidence/part1-linux/10-backup.txt
++A  evidence/part1-linux/11-processes.png
++A  evidence/part1-linux/11-processes.txt
++A  evidence/part1-linux/12-log-tail.png
++A  evidence/part1-linux/12-log-tail.txt
++A  evidence/part1-linux/13-log-search.png
++A  evidence/part1-linux/13-log-search.txt
++A  evidence/part1-linux/14-redirect-demo.png
++A  evidence/part1-linux/14-redirect-demo.txt
++A  evidence/part1-linux/15-structure-final.png
++A  evidence/part1-linux/15-structure-final.txt
++
++nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git ls-files | grep -c . ; git ls-files | grep -E "(^|/)\.env$" || echo ".env is NOT tracked (ignored)"
++67
++.env is NOT tracked (ignored)
++
++nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git commit -q -m "Initial commit: Toktobaev Nooruzbek Student API" && git log --oneline -1 && git show --stat --format="%an <%ae>%n%s" HEAD | head -12
++29b1864 Initial commit: Toktobaev Nooruzbek Student API
++Nooruzbek Toktobaev <nookentoktobaev@gmail.com>
++Initial commit: Toktobaev Nooruzbek Student API
++
++ .env.example                                                                          |   4 ++
++ .gitattributes                                                                        |   4 ++
++ .gitignore                                                                            |  24 +++++++++++
++ Dockerfile                                                                            |   0
++ Jenkinsfile                                                                           |   0
++ README.md                                                                             |  46 ++++++++++++++++++++
++ backups/README_Toktobaev_Nooruzbek_backup.md                                          |  46 ++++++++++++++++++++
++ build.gradle                                                                          |  52 ++++++++++++++++++++++
++ docker-compose.yml                                                                    |   0
++
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git commit -q -m "docs: rewrite README description on documentation branch — Toktobaev Nooruzbek" README.md && git log --oneline -1
+721aaaf docs: rewrite README description on documentation branch — Toktobaev Nooruzbek
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git switch main
+Switched to branch 'main'
+M	evidence/part2-git/03-first-commit.txt
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ sed -i 's|^\*\*Description:\*\*.*|**Description:** Student management REST API on Spring Boot + PostgreSQL, packaged with Docker and built by Jenkins — DevOps midterm of Nooruzbek Toktobaev.|' README.md && git diff
+diff --git a/README.md b/README.md
+index 2f144bb..6b150fd 100644
+--- a/README.md
++++ b/README.md
+@@ -2,7 +2,7 @@
+ 
+ **Author:** Nooruzbek Toktobaev
+ 
+-**Description:** Spring Boot CRUD REST API for managing students — DevOps midterm project.
++**Description:** Student management REST API on Spring Boot + PostgreSQL, packaged with Docker and built by Jenkins — DevOps midterm of Nooruzbek Toktobaev.
+ 
+ ## Stack
+ 
+diff --git a/evidence/part2-git/03-first-commit.txt b/evidence/part2-git/03-first-commit.txt
+index e69de29..7b50b69 100644
+--- a/evidence/part2-git/03-first-commit.txt
++++ b/evidence/part2-git/03-first-commit.txt
+@@ -0,0 +1,61 @@
++nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git add . && git update-index --add --chmod=+x gradlew scripts/Toktobaev_Nooruzbek_system_report.sh evidence/run.sh evidence/render.py && git status --short | head -40
++A  .env.example
++A  .gitattributes
++A  .gitignore
++A  Dockerfile
++A  Jenkinsfile
++A  README.md
++A  backups/README_Toktobaev_Nooruzbek_backup.md
++A  build.gradle
++A  docker-compose.yml
++A  evidence/part1-linux/01-create-structure.png
++A  evidence/part1-linux/01-create-structure.txt
++A  evidence/part1-linux/02-tree.png
++A  evidence/part1-linux/02-tree.txt
++A  evidence/part1-linux/03-verify-files.png
++A  evidence/part1-linux/03-verify-files.txt
++A  evidence/part1-linux/04-app-sources.png
++A  evidence/part1-linux/04-app-sources.txt
++A  evidence/part1-linux/05-script-source-1.png
++A  evidence/part1-linux/05-script-source-2.png
++A  evidence/part1-linux/05-script-source.txt
++A  evidence/part1-linux/06-script-run-1.png
++A  evidence/part1-linux/06-script-run-1.txt
++A  evidence/part1-linux/07-permissions.png
++A  evidence/part1-linux/07-permissions.txt
++A  evidence/part1-linux/08-script-run-2.png
++A  evidence/part1-linux/08-script-run-2.txt
++A  evidence/part1-linux/09-readme.png
++A  evidence/part1-linux/09-readme.txt
++A  evidence/part1-linux/10-backup.png
++A  evidence/part1-linux/10-backup.txt
++A  evidence/part1-linux/11-processes.png
++A  evidence/part1-linux/11-processes.txt
++A  evidence/part1-linux/12-log-tail.png
++A  evidence/part1-linux/12-log-tail.txt
++A  evidence/part1-linux/13-log-search.png
++A  evidence/part1-linux/13-log-search.txt
++A  evidence/part1-linux/14-redirect-demo.png
++A  evidence/part1-linux/14-redirect-demo.txt
++A  evidence/part1-linux/15-structure-final.png
++A  evidence/part1-linux/15-structure-final.txt
++
++nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git ls-files | grep -c . ; git ls-files | grep -E "(^|/)\.env$" || echo ".env is NOT tracked (ignored)"
++67
++.env is NOT tracked (ignored)
++
++nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git commit -q -m "Initial commit: Toktobaev Nooruzbek Student API" && git log --oneline -1 && git show --stat --format="%an <%ae>%n%s" HEAD | head -12
++29b1864 Initial commit: Toktobaev Nooruzbek Student API
++Nooruzbek Toktobaev <nookentoktobaev@gmail.com>
++Initial commit: Toktobaev Nooruzbek Student API
++
++ .env.example                                                                          |   4 ++
++ .gitattributes                                                                        |   4 ++
++ .gitignore                                                                            |  24 +++++++++++
++ Dockerfile                                                                            |   0
++ Jenkinsfile                                                                           |   0
++ README.md                                                                             |  46 ++++++++++++++++++++
++ backups/README_Toktobaev_Nooruzbek_backup.md                                          |  46 ++++++++++++++++++++
++ build.gradle                                                                          |  52 ++++++++++++++++++++++
++ docker-compose.yml                                                                    |   0
++
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git commit -q -m "docs: update README description on main — Toktobaev Nooruzbek" README.md && git log --oneline -1
+6fa0ff4 docs: update README description on main — Toktobaev Nooruzbek
+

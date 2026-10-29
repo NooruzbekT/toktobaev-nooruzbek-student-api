@@ -1,0 +1,4 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git tag -a v1.0-toktobaev-nooruzbek -m "Version 1.0 — Student API by Nooruzbek Toktobaev" && git push origin v1.0-toktobaev-nooruzbek 2>&1
+To https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git
+ * [new tag]         v1.0-toktobaev-nooruzbek -> v1.0-toktobaev-nooruzbek
+

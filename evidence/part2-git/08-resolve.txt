@@ -1,0 +1,31 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ sed -n "1,8p" README.md
+# Student API — Nooruzbek Toktobaev
+
+**Author:** Nooruzbek Toktobaev
+
+**Description:** Spring Boot CRUD REST API for managing students (create, read, update, delete, search by last name) with PostgreSQL, Docker and a Jenkins pipeline — DevOps midterm of Nooruzbek Toktobaev.
+
+## Stack
+
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ grep -c -E "^(<<<<<<<|=======|>>>>>>>)" README.md || echo "no conflict markers left"
+0
+no conflict markers left
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git add README.md && git commit -q -m "Resolve README merge conflict — Toktobaev Nooruzbek" && git log --oneline -1
+dbf4abf Resolve README merge conflict — Toktobaev Nooruzbek
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git log --oneline --graph --all --decorate
+*   dbf4abf (HEAD -> main) Resolve README merge conflict — Toktobaev Nooruzbek
+|\  
+| * 721aaaf (feature/toktobaev-nooruzbek-documentation) docs: rewrite README description on documentation branch — Toktobaev Nooruzbek
+* | 6fa0ff4 docs: update README description on main — Toktobaev Nooruzbek
+|/  
+*   c392089 Merge branch feature/toktobaev-nooruzbek-crud: student search by Toktobaev Nooruzbek
+|\  
+| * 0fb4955 (feature/toktobaev-nooruzbek-crud) docs: describe CRUD search change by Toktobaev Nooruzbek
+| * 28f7762 test(crud): cover last name search with integration test — Toktobaev Nooruzbek
+| * 02abdbf feat(crud): add search of students by last name — Toktobaev Nooruzbek
+|/  
+* 29b1864 Initial commit: Toktobaev Nooruzbek Student API
+

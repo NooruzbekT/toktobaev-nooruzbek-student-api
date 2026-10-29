@@ -1,0 +1,15 @@
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ gh repo create toktobaev-nooruzbek-student-api --public --source=. --remote=origin --description "Spring Boot CRUD Student API — DevOps midterm of Nooruzbek Toktobaev"
+https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git push -u origin main 2>&1
+To https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+
+nooruzbek@NooruzbekT:~/toktobaev-nooruzbek-student-api$ git push -u origin feature/toktobaev-nooruzbek-crud feature/toktobaev-nooruzbek-documentation 2>&1
+To https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git
+ * [new branch]      feature/toktobaev-nooruzbek-crud -> feature/toktobaev-nooruzbek-crud
+ * [new branch]      feature/toktobaev-nooruzbek-documentation -> feature/toktobaev-nooruzbek-documentation
+branch 'feature/toktobaev-nooruzbek-crud' set up to track 'origin/feature/toktobaev-nooruzbek-crud'.
+branch 'feature/toktobaev-nooruzbek-documentation' set up to track 'origin/feature/toktobaev-nooruzbek-documentation'.
+
