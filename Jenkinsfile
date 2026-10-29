@@ -32,8 +32,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
-                echo "Build by ${STUDENT_NAME}"
+                // Explicit branch name (instead of the job's "*/${BRANCH}" pattern):
+                // SCM polling does not expand parameters, so it needs the real branch recorded here
+                checkout scmGit(
+                    branches: [[name: "*/${params.BRANCH}"]],
+                    userRemoteConfigs: [[url: 'https://github.com/NooruzbekT/toktobaev-nooruzbek-student-api.git',
+                                         credentialsId: 'github-token']])
+                echo "Build by ${STUDENT_NAME} (branch ${params.BRANCH})"
                 sh 'git log -1 --format="Commit %h by %an: %s"'
             }
         }
