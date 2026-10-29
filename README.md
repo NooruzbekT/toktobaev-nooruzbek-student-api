@@ -2,7 +2,7 @@
 
 **Author:** Nooruzbek Toktobaev
 
-**Description:** Student management REST API on Spring Boot + PostgreSQL, packaged with Docker and built by Jenkins — DevOps midterm of Nooruzbek Toktobaev.
+**Description:** Spring Boot CRUD REST API for managing students (create, read, update, delete, search by last name) with PostgreSQL, Docker and a Jenkins pipeline — DevOps midterm of Nooruzbek Toktobaev.
 
 ## Stack
 
