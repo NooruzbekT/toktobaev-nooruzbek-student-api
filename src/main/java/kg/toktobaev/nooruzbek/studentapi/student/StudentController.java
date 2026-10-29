@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -25,9 +26,15 @@ public class StudentController {
         this.service = service;
     }
 
+    /**
+     * GET /api/students — all students; GET /api/students?lastName=tok — search by last name.
+     */
     @GetMapping
-    public List<Student> getAll() {
-        return service.findAll();
+    public List<Student> getAll(@RequestParam(required = false) String lastName) {
+        if (lastName == null || lastName.isBlank()) {
+            return service.findAll();
+        }
+        return service.searchByLastName(lastName);
     }
 
     @GetMapping("/{id}")
